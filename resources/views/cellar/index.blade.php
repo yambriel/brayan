@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('layouts.success')
+@include('layouts.errors')
 
  <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
@@ -37,7 +39,7 @@
       <tr>
         <th style="width: 10px">#</th>
         <th>Nombre</th>
-        <th>puestos</th>
+        <th>N° Puestos</th>
         <th>Acción</th>
       </tr>
       @if($cellars->count())  
@@ -45,7 +47,7 @@
       <tr>
         <td>{{$cellar->id}}</td>
         <td>{{$cellar->name}}</td>
-        <td>crear puestos y que se reflejen en la bd</td>
+        <td>{{$cellar->cantidadPuestos}}</td>
         <td>
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto">

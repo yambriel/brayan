@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('layouts.success')
+@include('layouts.errors')
 
  <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
@@ -46,7 +48,7 @@
       @foreach($cars as $car)  
       <tr>
         <td>{{$car->id}}</td>
-        <td>clientes exportar de bd</td>
+        <td>{{$car->name}}</td>
         <td>{{$car->model}}</td>
         <td>{{$car->color}}</td>
         <td>{{$car->placa}}</td>

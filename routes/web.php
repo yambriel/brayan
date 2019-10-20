@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/car/customer', 'CustomerController@getCustomer');
 Route::resource('ticket', 'TicketController');
 //Route::post('/car/create', 'CarController@create')->name('car.create');
 Route::resource('car', 'CarController');

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Car;
+use App\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
@@ -14,7 +17,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars=Car::orderBy('id','ASC')->paginate(6);
+        $cars=Car::join('customers', 'cars.idcustomers', '=', 'customers.id')->select('cars.id',DB::raw('concat(name," ",last_name) as name'),'model','color','placa')->orderBy('cars.id','ASC')->paginate(6);
         return view('car.index',compact('cars'));
     }
 
@@ -25,7 +28,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        
+
         return view('car.create');
     }
 
@@ -37,7 +40,7 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //print_r($request);
+        // dd(Input::all());
         Car::create($request->all());
         return redirect()->route('car.index')->with('success','Registro creado satisfactoriamente');
         //die();

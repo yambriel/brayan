@@ -3,9 +3,7 @@
 @section('body-class','profile-page sidebar-collapse')
 
 @section('content')
-
-
- <nav class="navbar navbar-expand-lg bg-info">
+          <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
               <div class="navbar-translate">
                 <a class="navbar-brand" href="#0">Cliente </a>
@@ -40,7 +38,7 @@
         <th>Apellido</th>
         <th>correo</th>
         <th>carnet</th>
-        <th>Placa de Vehiculo</th>
+        {{-- <th>Placa de Vehiculo</th> --}}
         <th>telefono</th>
         <th>Acción</th>
       </tr>
@@ -52,27 +50,25 @@
         <td>{{$customer->last_name}}</td>
         <td>{{$customer->email}}</td>
         <td>{{$customer->carnet}}</td>
-        <td>traer placa de vehiculo</td>
+        {{-- <td>traer placa de vehiculo</td> --}}
         <td>{{$customer->phone}}</td>
         <td>
           <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-          <form action="{{action('CustomerController@destroy', $customer->id)}}" method="post">
-           {{csrf_field()}}
-           <input name="_method" type="hidden" value="DELETE">
-           <a class="btn-edit" href="{{action('CustomerController@edit', $customer->id)}}" ><i class="fas fa-edit"></i>
-          </a>
-           <button class="btn-delete" type="submit"><i class="fas fa-trash"></i></i></button>
+            <div class="col-md-12 ml-auto mr-auto">
+              <form action="{{action('CustomerController@destroy', $customer->id)}}" method="post">
+                 {{csrf_field()}}
+                 <input name="_method" type="hidden" value="DELETE">
+                 <a class="btn-edit" href="{{action('CustomerController@edit', $customer->id)}}" ><i class="fas fa-edit"></i>
+                </a>
+                 <button class="btn-delete" type="submit"><i class="fas fa-trash"></i></button>
+              </form>
+            </div>
           </div>
-        </div>
         </td>
-       </tr>
-
-
-
-       @endforeach 
-       @else
-       <tr>
+      </tr>
+      @endforeach 
+      @else
+      <tr>
         <td colspan="8">No hay clientes registrados !!</td>
       </tr>
       @endif

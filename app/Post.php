@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'number'
-    ]; 
+        'cellar_id', 'number', 'status'
+    ];
     public function cellar()
     {
         return $this->belongsTo('App\Cellar');

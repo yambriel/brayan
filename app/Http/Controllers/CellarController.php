@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cellar;
+use App\Post;
 use Illuminate\Http\Request;
 
 class CellarController extends Controller
@@ -25,7 +26,7 @@ class CellarController extends Controller
      */
     public function create()
     {
-        
+
         return view('cellar.create');
     }
 
@@ -37,10 +38,18 @@ class CellarController extends Controller
      */
     public function store(Request $request)
     {
-        //print_r($request);
-        Cellar::create($request->all());
+        $Cellar = new Cellar;
+        $Cellar->name = $request->name;
+        $Cellar->cantidadPuestos = $request->cantidadPuestos;
+        $Cellar->save();
+        $idCellarRecienGuardada = $Cellar->id;
+        for ($i = 1; $i <= intval($request->cantidadPuestos); $i++) {
+            $Post = new Post;
+            $Post->cellar_id = $idCellarRecienGuardada;
+            $Post->number = $i;
+            $Post->save();
+        }
         return redirect()->route('cellar.index')->with('success','Registro creado satisfactoriamente');
-        //die();
     }
 
     /**
@@ -76,8 +85,15 @@ class CellarController extends Controller
     public function update(Request $request, $id)
     {
         //$this->validate($request,[ 'model'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
-
         Cellar::find($id)->update($request->all());
+        //borramos los puestos y los creamos nuevamente por si la cantidad cambia
+        Post::where('cellar_id',$id)->delete();
+        for ($i = 1; $i <= intval($request->cantidadPuestos); $i++) {
+            $Post = new Post;
+            $Post->cellar_id = $id;
+            $Post->number = $i;
+            $Post->save();
+        }
         return redirect()->route('cellar.index')->with('success','Registro actualizado satisfactoriamente');
 
     }

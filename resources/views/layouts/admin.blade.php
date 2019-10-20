@@ -12,7 +12,6 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.ccs') }}">
   <!-- CSS Files -->
   <link href="{{ asset('css/material-kit.css') }}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -22,6 +21,8 @@
   <link href="{{ asset('fontawesome/css/brands.css') }}" rel="stylesheet">
   <link href="{{ asset('fontawesome/css/solid.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('chosen/chosen.min.css') }}">
+  <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
 </head>
 
 <body class="@yield('body-class')">
@@ -193,7 +194,8 @@
   
 </body>
 
- <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('chosen/chosen.jquery.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('chosen/docsupport/init.js') }}" type="text/javascript" charset="utf-8"></script>
   <script src="{{ asset('js/core/popper.min.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/plugins/moment.min.js') }}"></script>
@@ -201,7 +203,6 @@
   <script src="{{ asset('js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="{{ asset('js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('plugins/chosen/chosen.jquery.js') }}" ></script>
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   {{-- con error --}}
   <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>

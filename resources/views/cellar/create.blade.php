@@ -5,9 +5,14 @@
 @section('content')
 	<form class="form" method="POST" action="{{ route('cellar.store') }}"  role="form">
       @csrf
-	  <div class="form-group">
-	    <label for="exampleFormControlInput1">nombre</label>
-	    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+	  	<div class="form-group">
+		    <label for="exampleFormControlInput1">Nombre del Sotano:</label>
+		    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="" required>
+		</div>
+		<div class="form-group">
+		    <label for="exampleFormControlInput1">Cantidad de Puestos:</label>
+		    <input type="number" name="cantidadPuestos" min="1" max="99" class="form-control" id="exampleFormControlInput1" placeholder="" required>
+		</div>
 	  <button type="submit" class="badge badge-pill badge-rose">Guardar</button>
 	  <a href="{{ URL::previous() }}" class="badge badge-pill badge-rose">Regresar</a>
 	</form>

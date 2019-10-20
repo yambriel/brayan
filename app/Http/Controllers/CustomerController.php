@@ -14,6 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        // SELECT cu.*, group_concat(ca.placa) FROM estacion.customers cu inner join estacion.cars ca on cu.id=ca.idcustomers group by id;
         $customers=Customer::orderBy('id','ASC')->paginate(6);
         return view('customer.index',compact('customers'));
     }
@@ -53,7 +54,25 @@ class CustomerController extends Controller
     {
         //
     }
-
+    private function encode(&$array)
+    { //ENVIAR POR AJAX
+        foreach($array as $key => $value){
+              if(!is_array($value))
+                $array[$key] = utf8_encode($value);
+              else
+                $this->encode($array[$key]);
+        }
+    }
+    /**
+     * retorna data del cliente
+     * @return [type] [description]
+     */
+    public function getCustomer()
+    {
+        $customer = Customer::get()->toarray();
+        $this->encode($customer);
+        return response()->json($customer);
+    }
     /**
      * Show the form for editing the specified resource.
      *

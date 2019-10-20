@@ -14,4 +14,5 @@ class Customer extends Model
     {
         return $this->hasOne('App\Ticket');
     }
+
 }
