@@ -135,10 +135,19 @@ class TicketController extends Controller
 
             $date1=date_create($request->entry_time);
             $dateformatExit=date_format($date1, 'Y-m-d h:m');
+            // Variables para update
+            $cellar_id=$request->cellar_id;
+            $number=$request->post_id;
+            //
             $Ticket = Ticket::find($id);
             $Ticket->exit_time = $dateformatExit;
             $Ticket->systemTimeExit = $request->systemTimeExit;
             $Ticket->save();
+
+            //Actualizar el estatus del puesto
+            Post::where('cellar_id',$cellar_id)->where('number',$number)
+                        ->update(['status' => 0]);
+
             return redirect()->route('ticket.index')->with('success','Fecha de Salida Agregada Satisfactoriamente');
         } else {
             $date1=date_create($request->entry_time);

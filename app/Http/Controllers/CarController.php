@@ -17,7 +17,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars=Car::join('customers', 'cars.idcustomers', '=', 'customers.id')->select('cars.id',DB::raw('concat(name," ",last_name) as name'),'model','color','placa')->orderBy('cars.id','ASC')->paginate(6);
+        $cars=Car::where('cars.status',1)->join('customers', 'cars.idcustomers', '=', 'customers.id')->select('cars.id',DB::raw('concat(name," ",last_name) as name'),'model','color','placa')->orderBy('cars.id','ASC')->paginate(6);
         return view('car.index',compact('cars'));
     }
 
@@ -72,7 +72,7 @@ class CarController extends Controller
     public function getCar()
     {
         $ids = Input::get('ids');
-        $car = Car::where('idcustomers', $ids)->get()->toarray();
+        $car = Car::where('idcustomers', $ids)->where('status',1)->get()->toarray();
         $this->encode($car);
         return response()->json($car);
     }
@@ -113,7 +113,7 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        Car::find($id)->delete();
+        Car::where('id',$id)->update(['status' => 0]);
         return redirect()->route('car.index')->with('success','Registro eliminado satisfactoriamente');
     }
 }

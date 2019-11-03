@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
         // SELECT cu.*, group_concat(ca.placa) FROM estacion.customers cu inner join estacion.cars ca on cu.id=ca.idcustomers group by id;
-        $customers=Customer::orderBy('id','ASC')->paginate(6);
+        $customers=Customer::where('status',1)->orderBy('id','ASC')->paginate(6);
         return view('customer.index',compact('customers'));
     }
 
@@ -69,7 +69,7 @@ class CustomerController extends Controller
      */
     public function getCustomer()
     {
-        $customer = Customer::get()->toarray();
+        $customer = Customer::where('status',1)->get()->toarray();
         $this->encode($customer);
         return response()->json($customer);
     }
@@ -109,7 +109,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        Customer::find($id)->delete();
+        Customer::where('id',$id)->update(['status' => 0]);
         return redirect()->route('customer.index')->with('success','Registro eliminado satisfactoriamente');
     }
 }

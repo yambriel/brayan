@@ -15,7 +15,7 @@ class CellarController extends Controller
      */
     public function index()
     {
-        $cellars=Cellar::orderBy('id','ASC')->paginate(6);
+        $cellars=Cellar::where('status',1)->orderBy('id','ASC')->paginate(6);
         return view('cellar.index',compact('cellars'));
     }
 
@@ -62,7 +62,7 @@ class CellarController extends Controller
     {
         //
     }
-private function encode(&$array)
+    private function encode(&$array)
     { //ENVIAR POR AJAX
         foreach($array as $key => $value){
               if(!is_array($value))
@@ -77,7 +77,7 @@ private function encode(&$array)
      */
     public function getCellar()
     {
-        $cellar = Cellar::get()->toarray();
+        $cellar = Cellar::where('status',1)->get()->toarray();
         $this->encode($cellar);
         return response()->json($cellar);
     }
@@ -124,7 +124,7 @@ private function encode(&$array)
      */
     public function destroy($id)
     {
-        Cellar::find($id)->delete();
+        Cellar::where('id',$id)->update(['status' => 0]);
         return redirect()->route('cellar.index')->with('success','Registro eliminado satisfactoriamente');
     }
 }

@@ -8,6 +8,10 @@
       @method('PUT')
       <input name="user_id" type="hidden" value="{{Auth::user()->id}}">
       <input name="fieldDisabled" type="hidden" value="{{$fieldDisabled}}">
+      @if ($fieldDisabled==1)
+      	<input name="cellar_id" type="hidden" value="{{$ticket->cellar_id}}">
+      	<input name="post_id" type="hidden" value="{{$ticket->post_id}}">
+      @endif
 	  <div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">

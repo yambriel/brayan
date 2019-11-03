@@ -58,6 +58,7 @@
           </a>
           <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
                </button>
+             </form>
           </div>
         </div>
         </td>
