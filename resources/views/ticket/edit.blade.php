@@ -7,6 +7,7 @@
       @csrf
       @method('PUT')
       <input name="user_id" type="hidden" value="{{Auth::user()->id}}">
+      <input name="fieldDisabled" type="hidden" value="{{$fieldDisabled}}">
 	  <div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
@@ -84,6 +85,29 @@
 	            </label>
 			</div>
 		</div>
+		<div class="form-group">
+		   	<label class="label-control">Fecha y Hora de Salida</label>
+		    <input type="text" ID="exit_time" name="exit_time" class="form-control datetimepicker" value="{{ old('exit_time') }}"/>
+
+		</div>
+	    <div class="form-group">
+	    	<div class="form-check">
+				<label class="form-check-label">
+	                <input class="form-check-input" type="radio" name="systemTimeExit" id="exampleRadios1" value="AM" {{(old('systemTimeExit') == 'AM') ? 'checked' : ''}}> AM
+	                <span class="circle">
+	            	    <span class="check"></span>
+	                </span>
+	            </label>
+			</div>
+			<div class="form-check">
+				<label class="form-check-label">
+	                <input class="form-check-input" type="radio" name="systemTimeExit" id="exampleRadios1" value="PM" {{(old('systemTimeExit') == 'PM') ? 'checked' : ''}}> PM
+	                <span class="circle">
+	            	    <span class="check"></span>
+	                </span>
+	            </label>
+			</div>
+		</div>
 	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
 	</form>
@@ -93,7 +117,7 @@
 			var carid = '{{$ticket->car_id}}'
 			var cellarid = '{{$ticket->cellar_id}}'
 			var postid = '{{$ticket->post_id}}'
-			var fieldDisabled = '{{$ticket->fieldDisabled}}'
+			var fieldDisabled = '{{$fieldDisabled}}'
 			$.ajax({	
 				url: "{{url('/')}}/ticket/customer",
 				type: "GET",
@@ -101,7 +125,7 @@
 				success: function(data) {
 					if(data.length >0){
 						$.each(data, function (i, val){
-							$('#co_cliente').append('<option value="'+val.id+'">'+val.name+' '+val.last_name+'</option>');
+							$('#co_cliente').append('<option value="'+val.id+'">'+val.carnet+'-'+val.name+' '+val.last_name+'</option>');
 						});
 					}else{
 						$("#formTicket").prepend($("<div>",{"class":"alert alert-danger"})
@@ -159,7 +183,6 @@
 				complete: function(){
 					$('#co_car').val(carid);
 					if (fieldDisabled!=0) {
-						// statement
 						$('#co_car').prop('disabled', true).trigger("liszt:updated");
 					}
 					$('#co_car').trigger('chosen:updated');
@@ -319,7 +342,11 @@
 			    },
 			    format:'DD-MM-YYYY hh:mm'
 			});
-		
+
+			if (fieldDisabled!=0) {
+				$('#entry_time').prop('disabled', true);
+				$('[name="systemTimeEntry"]').prop('disabled', true);
+			}
 		});
 
 

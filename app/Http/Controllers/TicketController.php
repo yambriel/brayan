@@ -62,9 +62,9 @@ class TicketController extends Controller
         $Ticket->cellar_id = $request->cellar_id;
         $Ticket->post_id = $request->post_id;
         $Ticket->car_id = $request->car_id;
-        $Ticket->entry_time = $dateformat;
         $Ticket->id_customer = $request->id_customer;
         $Ticket->cellar_id = $request->cellar_id;
+        $Ticket->entry_time = $dateformat;
         $Ticket->systemTimeEntry = $request->systemTimeEntry;
         $Ticket->save();
 
@@ -106,8 +106,10 @@ class TicketController extends Controller
     public function editexit($id)
     {
         $fieldDisabled=1;
-        $ticket=Ticket::find($id);
-        return view('ticket.edit',compact('ticket',$fieldDisabled));
+        $ticket=Ticket::where('id',$id)->select('id','user_id','cellar_id','post_id','car_id','id_customer',DB::raw('DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i") as entry_time'),'systemTimeEntry')->first();
+        return view('ticket.edit')
+        ->with('ticket',$ticket)
+        ->with('fieldDisabled',$fieldDisabled);
     }
 
     /**
@@ -120,9 +122,19 @@ class TicketController extends Controller
     public function update(Request $request, $id)
     {
         //$this->validate($request,[ 'model'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
+        if ($request->fieldDisabled != 0) {
 
-        Ticket::find($id)->update($request->all());
-        return redirect()->route('ticket.index')->with('success','Registro actualizado satisfactoriamente');
+            $date1=date_create($request->entry_time);
+            $dateformatExit=date_format($date1, 'Y-m-d h:m');
+            $Ticket = Ticket::find($id);
+            $Ticket->exit_time = $dateformatExit;
+            $Ticket->systemTimeExit = $request->systemTimeExit;
+            $Ticket->save();
+            return redirect()->route('ticket.index')->with('success','Fecha de Salida Agregada Satisfactoriamente');
+        } else {
+            Ticket::find($id)->update($request->all());
+            return redirect()->route('ticket.index')->with('success','Registro actualizado satisfactoriamente');
+        }
 
     }
 

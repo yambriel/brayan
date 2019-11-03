@@ -43,7 +43,7 @@
 					dataType: 'JSON',
 					success: function(data) {
 						$.each(data, function (i, val){
-							$('#co_cliente').append('<option value="'+val.id+'">'+val.name+' '+val.last_name+'</option>');
+							$('#co_cliente').append('<option value="'+val.id+'">'+val.carnet+'-'+val.name+' '+val.last_name+'</option>');
 						});
 					},
 					error: function(xhr, textStatus, thrownError) {
