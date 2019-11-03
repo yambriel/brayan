@@ -63,7 +63,6 @@ class TicketController extends Controller
         $Ticket->post_id = $request->post_id;
         $Ticket->car_id = $request->car_id;
         $Ticket->id_customer = $request->id_customer;
-        $Ticket->cellar_id = $request->cellar_id;
         $Ticket->entry_time = $dateformat;
         $Ticket->systemTimeEntry = $request->systemTimeEntry;
         $Ticket->save();
@@ -97,7 +96,7 @@ class TicketController extends Controller
     public function edit($id)
     {
         $fieldDisabled=0;
-        $ticket=Ticket::find($id);
+        $ticket=Ticket::where('id',$id)->select('id','user_id','cellar_id','post_id','car_id','id_customer',DB::raw('DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i") as entry_time'),'systemTimeEntry')->first();
         return view('ticket.edit')
         ->with('ticket',$ticket)
         ->with('fieldDisabled',$fieldDisabled);
@@ -132,7 +131,17 @@ class TicketController extends Controller
             $Ticket->save();
             return redirect()->route('ticket.index')->with('success','Fecha de Salida Agregada Satisfactoriamente');
         } else {
-            Ticket::find($id)->update($request->all());
+            $date1=date_create($request->entry_time);
+            $dateformatExit=date_format($date1, 'Y-m-d h:m');
+            $Ticket = Ticket::find($id);
+            $Ticket->user_id = $request->user_id;
+            $Ticket->cellar_id = $request->cellar_id;
+            $Ticket->post_id = $request->post_id;
+            $Ticket->car_id = $request->car_id;
+            $Ticket->id_customer = $request->id_customer;
+            $Ticket->entry_time = $dateformatExit;
+            $Ticket->systemTimeEntry = $request->systemTimeEntry;
+            $Ticket->save();
             return redirect()->route('ticket.index')->with('success','Registro actualizado satisfactoriamente');
         }
 
