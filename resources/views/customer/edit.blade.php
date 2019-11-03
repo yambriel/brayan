@@ -3,6 +3,10 @@
 @section('body-class','profile-page sidebar-collapse')
 
 @section('content')
+@include('layouts.success')
+@include('layouts.errors')
+
+
 	<form class="form" method="POST" action="{{ route('customer.update',$customer->id) }}"  role="form">
       @csrf
       @method('PUT')
@@ -20,13 +24,13 @@
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Carnet</label>
-	    <input type="text" name="carnet" class="form-control" id="exampleFormControlInput1" value="{{$customer->carnet}}"required>
+	    <input type="number" name="carnet" class="form-control" id="exampleFormControlInput1" value="{{$customer->carnet}}"required>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Telefono</label>
-	    <input type="text" name="phone" class="form-control" id="exampleFormControlInput1" value="{{$customer->phone}}"required>
+	    <input type="number" name="phone" class="form-control" id="exampleFormControlInput1" value="{{$customer->phone}}"required>
 	  </div>
 	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
+	  <a href="{{ route('customer.index')}}" class="btn btn-primary">Regresar</a>
 	</form>
 @endsection

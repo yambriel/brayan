@@ -3,6 +3,11 @@
 @section('body-class','profile-page sidebar-collapse')
 
 @section('content')
+
+@include('layouts.success')
+@include('layouts.errors')
+
+
 	<form class="form" method="POST" action="{{ route('car.store') }}" id="formCar" role="form">
       @csrf
 	  <div class="form-group">
@@ -14,24 +19,26 @@
 	  	<div class="row">
 		  	<div class="col col-lg-2">
 			    <select id="co_cliente" name="idcustomers" data-placeholder="Elija el Cliente" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
+			    <option value=""></option>
 			    </select>
+
 	    	</div>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Modelo</label>
-	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Modelo del Vehiculo" required>
+	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Modelo del Vehiculo" required value="{{ old('model') }}">
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Placa</label>
-	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese la Placa del Vehiculo" required>
+	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese la Placa del Vehiculo" required value="{{ old('placa') }}">
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Color</label>
-	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Color del Vehiculo" required>
+	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Color del Vehiculo" required value="{{ old('color') }}">
 	  </div>
-	  <button type="submit" class="btn btn-primary">Guardar</button>
-	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
+	  <button type="submit" class="btn btn-primary validd">Guardar</button>
+	  <a href="{{ route('car.index') }}" class="btn btn-primary">Regresar</a>
 	</form>
 	<script>
 		$(document).ready(function () {
@@ -63,6 +70,19 @@
 						$('#co_cliente').trigger('chosen:updated');
 					}
 				});
+			$('.validd').click(function() {
+				if($('#co_cliente').val()==''){
+					$("#formCar").prepend($("<div>",{"class":"alert alert-danger"})
+								.append($("<div>",{"class":"container"})
+									.append($("<div>",{"class":"alert-icon"})
+										.append($("<i>",{"class":"material-icons"}).text('error_outline')))
+									.append($("<button>",{"class":"close","type":"button","data-dismiss":"alert","aria-label":"Close"})
+										.append($("<span>",{"aria-hidden":"true"})
+											.append($("<i>",{"class":"material-icons"}).text('clear')) ))
+									.append($("<b>").text('Error Alert:'))
+									.append('Debe Elegir un Cliente')))
+				}
+			});
 		});
 
 	</script>

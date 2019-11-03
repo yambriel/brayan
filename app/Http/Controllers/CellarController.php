@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Cellar;
 use App\Post;
 use Illuminate\Http\Request;
+use Validator;
+use App\Http\Controllers\Controller;
 
 class CellarController extends Controller
 {
@@ -38,6 +40,19 @@ class CellarController extends Controller
      */
     public function store(Request $request)
     {
+       
+       $validator = Validator::make($request->all(), [
+            
+            'name'               => 'required|min:1|max:15',
+            'cantidadPuestos'    => 'numeric|min:99',
+            ]);
+        
+        if ($validator->fails()) {
+            return redirect('cellar/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $Cellar = new Cellar;
         $Cellar->name = $request->name;
         $Cellar->cantidadPuestos = $request->cantidadPuestos;
@@ -102,7 +117,18 @@ private function encode(&$array)
      */
     public function update(Request $request, $id)
     {
-        //$this->validate($request,[ 'model'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
+       $validator = Validator::make($request->all(), [
+            
+            'name'               => 'required|min:1|max:15',
+            'cantidadPuestos'    => 'numeric|min:99',
+            ]);
+        
+        if ($validator->fails()) {
+            return redirect('cellar/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         Cellar::find($id)->update($request->all());
         //borramos los puestos y los creamos nuevamente por si la cantidad cambia
         Post::where('cellar_id',$id)->delete();
@@ -125,6 +151,8 @@ private function encode(&$array)
     public function destroy($id)
     {
         Cellar::find($id)->delete();
+
+
         return redirect()->route('cellar.index')->with('success','Registro eliminado satisfactoriamente');
     }
 }

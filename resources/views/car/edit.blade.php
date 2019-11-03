@@ -3,6 +3,10 @@
 @section('body-class','profile-page sidebar-collapse')
 
 @section('content')
+
+@include('layouts.success')
+@include('layouts.errors')
+
 	<form class="form" method="POST" action="{{ route('car.update',$car->id) }}"  role="form">
       @csrf
       @method('PUT')
@@ -32,7 +36,7 @@
 	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" value="{{$car->color}}"required>
 	  </div>
 	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
+	  <a href="{{ route('car.index')}}" class="btn btn-primary">Regresar</a>
 	</form>
 	<script>
 	$(document).ready(function () {

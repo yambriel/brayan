@@ -7,6 +7,8 @@ use App\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use Validator;
+use App\Http\Controllers\Controller;
 
 class CarController extends Controller
 {
@@ -40,6 +42,21 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            
+            'model'       => 'required|min:1|max:20',
+            'placa'        => 'required|min:1|max:7',
+            'color'        => 'required|min:1|max:20',
+           
+
+            ]);
+        
+        if ($validator->fails()) {
+            return redirect('car/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         // dd(Input::all());
         Car::create($request->all());
         return redirect()->route('car.index')->with('success','Registro creado satisfactoriamente');
@@ -98,7 +115,21 @@ class CarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //$this->validate($request,[ 'model'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
+        
+        $validator = Validator::make($request->all(), [
+            
+            'model'  => 'required|min:1|max:20',
+            'placa'   => 'required|min:1|max:7',
+            'color'   => 'required|min:1|max:20'
+
+            ]);
+        
+        if ($validator->fails()) {
+            return redirect('car/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
 
         Car::find($id)->update($request->all());
         return redirect()->route('car.index')->with('success','Registro actualizado satisfactoriamente');
