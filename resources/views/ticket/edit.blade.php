@@ -8,6 +8,10 @@
       @method('PUT')
       <input name="user_id" type="hidden" value="{{Auth::user()->id}}">
       <input name="fieldDisabled" type="hidden" value="{{$fieldDisabled}}">
+      @if ($fieldDisabled==1)
+      	<input name="cellar_id" type="hidden" value="{{$ticket->cellar_id}}">
+      	<input name="post_id" type="hidden" value="{{$ticket->post_id}}">
+      @endif
 	  <div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
@@ -85,12 +89,12 @@
 	            </label>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group hidden">
 		   	<label class="label-control">Fecha y Hora de Salida</label>
 		    <input type="text" ID="exit_time" name="exit_time" class="form-control datetimepicker" value="{{ old('exit_time') }}"/>
 
 		</div>
-	    <div class="form-group">
+	    <div class="form-group hidden">
 	    	<div class="form-check">
 				<label class="form-check-label">
 	                <input class="form-check-input" type="radio" name="systemTimeExit" id="exampleRadios1" value="AM" {{(old('systemTimeExit') == 'AM') ? 'checked' : ''}}> AM
@@ -147,7 +151,6 @@
 					if (fieldDisabled!=0) {
 						// statement
 						$('#co_cliente').prop('disabled', true).trigger("liszt:updated");
-						$('#entry_time').addClass('hidden')
 					}
 					$('#co_cliente').trigger('chosen:updated');
 				}
@@ -346,6 +349,7 @@
 			if (fieldDisabled!=0) {
 				$('#entry_time').prop('disabled', true);
 				$('[name="systemTimeEntry"]').prop('disabled', true);
+				$(".form-group").removeClass("hidden");
 			}
 		});
 

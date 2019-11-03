@@ -3,6 +3,10 @@
 @section('body-class','profile-page sidebar-collapse')
 
 @section('content')
+
+@include('layouts.success')
+@include('layouts.errors')
+
 <form class="form" method="POST" action="{{ route('ticket.store') }}" id="formTicket" role="form">
       @csrf
       <input name="user_id" type="hidden" value="{{Auth::user()->id}}">
@@ -64,7 +68,7 @@
 		   	<label class="label-control">Fecha y Hora de Entrada</label>
 		    <input type="text" name="entry_time" class="form-control datetimepicker" value="
 		    {{
-		    date('d-m-Y hh:mm')
+		    ((old('entry_time')!= '')?old('entry_time'):date('d-m-Y hh:mm'))
 			}}
 			"/>
 
@@ -72,7 +76,7 @@
 	    <div class="form-group">
 	    	<div class="form-check">
 				<label class="form-check-label">
-	                <input class="form-check-input" type="radio" name="systemTimeEntry" id="exampleRadios1" value="AM" checked> AM
+	                <input class="form-check-input" type="radio" name="systemTimeEntry" id="exampleRadios1" value="AM" {{ (old('systemTimeEntry') != ""?(old('systemTimeEntry') == "AM")?'checked':'':'checked') }}> AM
 	                <span class="circle">
 	            	    <span class="check"></span>
 	                </span>
@@ -80,7 +84,7 @@
 			</div>
 			<div class="form-check">
 				<label class="form-check-label">
-	                <input class="form-check-input" type="radio" name="systemTimeEntry" id="exampleRadios1" value="PM"> PM
+	                <input class="form-check-input" type="radio" name="systemTimeEntry" id="exampleRadios1" value="PM" {{ (old('systemTimeEntry') == "PM")?'checked':'' }}> PM
 	                <span class="circle">
 	            	    <span class="check"></span>
 	                </span>
@@ -95,6 +99,10 @@
 
 	<script>
 		$(document).ready(function () {
+			var idcustomer = "{{ old('id_customer') }}"
+			var carid = "{{ old('car_id') }}"
+			var cellarid = "{{ old('cellar_id') }}"
+			var postid = "{{ old('post_id') }}"
 			$.ajax({	
 				url: "{{url('/')}}/ticket/customer",
 				type: "GET",
@@ -120,6 +128,10 @@
 					alert('Problemas en el servidor LLAMA A BRAYANNNNN.. Vuelva a intentar, si el problema persiste comuniquese con soporte');
 				},
 				complete: function(){
+					if(idcustomer!=''){
+						$('#co_cliente').val(idcustomer);
+						$('#co_cliente').change();
+					}
 					$('#co_cliente').trigger('chosen:updated');
 				}
 			});
@@ -153,6 +165,9 @@
 						alert('Problemas en el servidor LLAMA A BRAYANNNNN.. Vuelva a intentar, si el problema persiste comuniquese con soporte');
 					},
 					complete: function(){
+						if(carid!=''){
+							$('#co_car').val(carid);
+						}
 						$('#co_car').trigger('chosen:updated');
 					}
 				});
@@ -182,6 +197,10 @@
 					alert('Problemas en el servidor LLAMA A BRAYANNNNN.. Vuelva a intentar, si el problema persiste comuniquese con soporte');
 				},
 				complete: function(){
+					if(cellarid!=''){
+						$('#co_sotano').val(cellarid);
+						$('#co_sotano').change();
+					}
 					$('#co_sotano').trigger('chosen:updated');
 				}
 			});
@@ -216,6 +235,9 @@
 						alert('Problemas en el servidor LLAMA A BRAYANNNNN.. Vuelva a intentar, si el problema persiste comuniquese con soporte');
 					},
 					complete: function(){
+						if(postid!=''){
+							$('#co_puesto').val(postid);
+						}
 						$('#co_puesto').trigger('chosen:updated');
 					}
 				});
@@ -234,7 +256,6 @@
 			    },
 			    format:'DD-MM-YYYY hh:mm'
 			});
-		
 		});
 
 
