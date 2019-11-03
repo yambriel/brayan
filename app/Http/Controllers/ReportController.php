@@ -26,7 +26,6 @@ class ReportController extends Controller
         ->join('posts', function ($join) {
             $join->on('tickets.post_id', '=', 'posts.number')->on('tickets.cellar_id', '=', 'posts.cellar_id');
         })
-        ->WhereNull('tickets.exit_time')
         ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),'posts.status as estatus')
         ->orderBy('tickets.id','ASC')->paginate(6);
         return view('report.index',compact('reports'));
@@ -40,7 +39,7 @@ class ReportController extends Controller
     public function create()
     {
 
-       
+
     }
 
     /**
@@ -72,12 +71,12 @@ class ReportController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     public function editexit($id)
     {
-       
+
     }
 
     /**
@@ -89,7 +88,7 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
+
     }
 
     /**
@@ -100,6 +99,6 @@ class ReportController extends Controller
      */
     public function destroy($id)
     {
-       
+
     }
 }

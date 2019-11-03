@@ -51,29 +51,39 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $date1=date_create($request->entry_time);
-        $dateformat=date_format($date1, 'Y-m-d h:m');
-        // Variables para update
-        $cellar_id=$request->cellar_id;
-        $number=$request->post_id;
-        //
-        $Ticket = new Ticket;
-        $Ticket->user_id = $request->user_id;
-        $Ticket->cellar_id = $request->cellar_id;
-        $Ticket->post_id = $request->post_id;
-        $Ticket->car_id = $request->car_id;
-        $Ticket->id_customer = $request->id_customer;
-        $Ticket->entry_time = $dateformat;
-        $Ticket->systemTimeEntry = $request->systemTimeEntry;
-        $Ticket->save();
+        $ticket=Ticket::where('id_customer',$request->id_customer)
+                    ->where('car_id',$request->car_id)
+                    ->whereNotNull('entry_time')
+                    ->WhereNull('exit_time');
+        if(count($ticket) == 0){
+            $date1=date_create($request->entry_time);
+            $dateformat=date_format($date1, 'Y-m-d h:m');
+            // Variables para update
+            $cellar_id=$request->cellar_id;
+            $number=$request->post_id;
+            //
+            $Ticket = new Ticket;
+            $Ticket->user_id = $request->user_id;
+            $Ticket->cellar_id = $request->cellar_id;
+            $Ticket->post_id = $request->post_id;
+            $Ticket->car_id = $request->car_id;
+            $Ticket->id_customer = $request->id_customer;
+            $Ticket->entry_time = $dateformat;
+            $Ticket->systemTimeEntry = $request->systemTimeEntry;
+            $Ticket->save();
 
-        //Actualizar el estatus del puesto
-        Post::where('cellar_id',$cellar_id)->where('number',$number)
-                    ->update(['status' => 1]);
+            //Actualizar el estatus del puesto
+            Post::where('cellar_id',$cellar_id)->where('number',$number)
+                        ->update(['status' => 1]);
 
-        // Ticket::create($request->all());
-        return redirect()->route('ticket.index')->with('success','Registro creado satisfactoriamente');
-        //die();
+            // Ticket::create($request->all());
+            return redirect()->route('ticket.index')->with('success','Registro creado satisfactoriamente');
+            //die();
+        } else {
+            return redirect('ticket/create')
+                        ->withErrors('El Cliente Posse un Ticket Activo con el mismo carro.')
+                        ->withInput();
+        }
     }
 
     /**
