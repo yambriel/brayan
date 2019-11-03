@@ -39,9 +39,9 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        // Customer::create($request->all());
+        Customer::create($request->all());
         return redirect()->route('customer.index')->with('success','Registro creado satisfactoriamente');
-        //die();
+        die();
     }
 
     /**

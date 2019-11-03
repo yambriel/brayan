@@ -23,6 +23,8 @@
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('chosen/chosen.min.css') }}">
   <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
+  {{-- con error --}}
+  <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
 </head>
 
 <body class="@yield('body-class')">
@@ -68,36 +70,13 @@
                                 </div>
                             </li>
                         @endguest
-
-
-
-
-
-
- <!--   <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
-              <i class="fa fa-facebook-square"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
-              <i class="fa fa-instagram"></i>
-            </a>
-          </li>
-      -->
         </ul>
       </div>
     </div>
-  </nav>
 </nav>
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('/img/c2.jpg')}}');"></div>
   <div class="main main-raised">
-    <nav class="navbar navbar-expand-lg bg-rose">
+          <nav class="navbar navbar-expand-lg bg-rose">
             <div class="container">
               <div class="navbar-translate">
                 <a href="{{ route('home') }}" class="navbar-brand" href="#0">Inicio</a>
@@ -110,102 +89,89 @@
               </div>
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
-                <li class="nav-item">
+                  <li class="nav-item">
+                    <a href="{{ route('ticket.index') }}" class="nav-link">Ticket</a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ route('customer.index') }}" class="nav-link">cliente</a>
                   </li>
-                   <li class="nav-item">
+                  <li class="nav-item">
                     <a href="{{ route('car.index') }}" class="nav-link">vehiculo</a>
                   </li>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('cellar.index') }}" class="nav-link">sotano</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('post.index') }}" class="nav-link">puesto</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('ticket.create') }}" class="nav-link">Ticket de Entrada</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('texit.create') }}" class="nav-link">Ticket de Salida</a>
-                  </li>
-                   
-                  
+                  @if (Auth::user()->admin)
+                    <li class="nav-item">
+                      <a href="{{ route('cellar.index') }}" class="nav-link">sotano</a>
 
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('report.index') }}" class="nav-link">Reportes</a>
+                    </li>
+                  @endif
 
                 </ul>
-                <form class="form-inline ml-auto">
-                  <div class="form-group has-white">
-                    <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
-                    <i class="material-icons">search</i>
-                  </button>
-                </form>
+                
               </div>
             </div>
           </nav>
-
-  </div>
-     
-  
-<div class="wrapper">
-  <div class="container">
-    @yield('content')
-  </div>
-</div>
-
-<footer class="footer footer-default">
-    <div class="container">
-      <nav class="float-left">
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
-          </li>
-          <li>
-            <a href="https://creative-tim.com/presentation">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="http://blog.creative-tim.com">
-              Blog
-            </a>
-          </li>
-          <li>
-            <a href="https://www.creative-tim.com/license">
-              Licenses
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright float-right">
-        &copy;
-        <script>
-          document.write(new Date().getFullYear())
-        </script>, made with <i class="material-icons">favorite</i> by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+    <div class="section section-basic">
+      <div class="container">
+        <div class="wrapper">
+          <div class="container">
+            @yield('content')
+          </div>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+
+        <footer class="footer footer-default">
+            <div class="container">
+              <nav class="float-left">
+                <ul>
+                  <li>
+                    <a href="https://www.creative-tim.com">
+                      Creative Tim
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://creative-tim.com/presentation">
+                      About Us
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://blog.creative-tim.com">
+                      Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.creative-tim.com/license">
+                      Licenses
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <div class="copyright float-right">
+                &copy;
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="material-icons">favorite</i> by
+                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+              </div>
+            </div>
+          </footer>
   <!--   Core JS Files   -->
-  
 </body>
 
   <script src="{{ asset('chosen/chosen.jquery.js') }}" type="text/javascript"></script>
   <script src="{{ asset('chosen/docsupport/init.js') }}" type="text/javascript" charset="utf-8"></script>
   <script src="{{ asset('js/core/popper.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/plugins/moment.min.js') }}"></script>
+  <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
   <!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
   <script src="{{ asset('js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="{{ asset('js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-  {{-- con error --}}
-  <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
   {{-- sin error --}}
   {{-- <script src="{{ asset('js/material-kit.min.js') }}" type="text/javascript"></script> --}}
 

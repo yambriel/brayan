@@ -14,25 +14,25 @@
 	   	</div>
 	  	<div class="row">
 		  	<div class="col col-lg-2">
-			    <select id="co_cliente" name="idcustomers" data-placeholder="Elija el Cliente" class="chosen-select" tabindex="2" style="width: 450px;">
+			    <select id="co_cliente" name="idcustomers" data-placeholder="Elija el Cliente" class="chosen-select" tabindex="2" style="width: 450px;"required>
 			    </select>
 	    	</div>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Modelo</label>
-	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" value="{{$car->model}}">
+	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" value="{{$car->model}}"required>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Placa</label>
-	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" value="{{$car->placa}}">
+	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" value="{{$car->placa}}"required>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Color</label>
-	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" value="{{$car->color}}">
+	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" value="{{$car->color}}"required>
 	  </div>
-	  <button type="submit" class="badge badge-pill badge-rose">Guardar Cambios</button>
-	  <a href="{{ URL::previous() }}" class="badge badge-pill badge-rose">Regresar</a>
+	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
 	</form>
 	<script>
 	$(document).ready(function () {

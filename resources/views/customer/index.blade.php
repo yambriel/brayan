@@ -3,6 +3,8 @@
 @section('body-class','profile-page sidebar-collapse')
 
 @section('content')
+@include('layouts.success')
+@include('layouts.errors')
           <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
               <div class="navbar-translate">
@@ -38,7 +40,6 @@
         <th>Apellido</th>
         <th>correo</th>
         <th>carnet</th>
-        {{-- <th>Placa de Vehiculo</th> --}}
         <th>telefono</th>
         <th>Acción</th>
       </tr>
@@ -50,7 +51,6 @@
         <td>{{$customer->last_name}}</td>
         <td>{{$customer->email}}</td>
         <td>{{$customer->carnet}}</td>
-        {{-- <td>traer placa de vehiculo</td> --}}
         <td>{{$customer->phone}}</td>
         <td>
           <div class="row">
@@ -58,9 +58,10 @@
               <form action="{{action('CustomerController@destroy', $customer->id)}}" method="post">
                  {{csrf_field()}}
                  <input name="_method" type="hidden" value="DELETE">
-                 <a class="btn-edit" href="{{action('CustomerController@edit', $customer->id)}}" ><i class="fas fa-edit"></i>
+                 <a data-toggle="tooltip" data-placement="top" title="Editar Cliente" class="btn-edit"href="{{action('CustomerController@edit', $customer->id)}}" ><i class="fas fa-edit"></i>
                 </a>
-                 <button class="btn-delete" type="submit"><i class="fas fa-trash"></i></button>
+              <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
+               </button>
               </form>
             </div>
           </div>

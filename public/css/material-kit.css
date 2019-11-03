@@ -1,6 +1,6 @@
 /*
  =========================================================
- * Material Kit - v2.0.5
+ * Material Kit - v2.0.6
  =========================================================
 
  * Product Page: https://www.creative-tim.com/product/material-kit
@@ -167,7 +167,7 @@ sup {
 }
 
 a {
-  color: #9c27b0;
+  color: #f30707;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -571,7 +571,7 @@ sup {
 }
 
 a {
-  color: #9c27b0;
+  color: #f30707;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -8894,8 +8894,8 @@ button:focus {
 
 .btn.btn-primary {
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #961212;
+  border-color: #961212;
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
 
@@ -8909,8 +8909,8 @@ button:focus {
 .btn.btn-primary.focus,
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #701c7e;
+  background-color: #f7002c;
+  border-color: #f7002c;
 }
 
 .btn.btn-primary:active,
@@ -10930,7 +10930,7 @@ legend {
 }
 
 * {
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: rgba(249, 1, 1, 0);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -10939,12 +10939,12 @@ legend {
 }
 
 a {
-  color: #9c27b0;
+  color: #e60a13;
 }
 
 a:hover,
 a:focus {
-  color: #89229b;
+  color: #e60a13;
   text-decoration: none;
 }
 
@@ -12230,14 +12230,14 @@ fieldset[disabled][disabled] .form-control,
 .form-control.disabled,
 .form-control:disabled,
 .form-control[disabled] {
-  background-image: linear-gradient(to right, #d2d2d2 0%, #d2d2d2 30%, transparent 30%, transparent 100%);
+  background-image: linear-gradient(to right, #f30202 0%, #d2d2d2 30%, transparent 30%, transparent 100%);
   background-repeat: repeat-x;
   background-size: 3px 1px;
 }
 
 .form-control.form-control-success,
 .is-focused .form-control.form-control-success {
-  background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjNWNiODVjIiBkPSJNMjMzLjggNjEwYy0xMy4zIDAtMjYtNi0zNC0xNi44TDkwLjUgNDQ4LjhDNzYuMyA0MzAgODAgNDAzLjMgOTguOCAzODljMTguOC0xNC4yIDQ1LjUtMTAuNCA1OS44IDguNGw3MiA5NUw0NTEuMyAyNDJjMTIuNS0yMCAzOC44LTI2LjIgNTguOC0xMy43IDIwIDEyLjQgMjYgMzguNyAxMy43IDU4LjhMMjcwIDU5MGMtNy40IDEyLTIwLjIgMTkuNC0zNC4zIDIwaC0yeiIvPjwvc3ZnPg==";
+  background-image: linear-gradient(to top, #f30202 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjNWNiODVjIiBkPSJNMjMzLjggNjEwYy0xMy4zIDAtMjYtNi0zNC0xNi44TDkwLjUgNDQ4LjhDNzYuMyA0MzAgODAgNDAzLjMgOTguOCAzODljMTguOC0xNC4yIDQ1LjUtMTAuNCA1OS44IDguNGw3MiA5NUw0NTEuMyAyNDJjMTIuNS0yMCAzOC44LTI2LjIgNTguOC0xMy43IDIwIDEyLjQgMjYgMzguNyAxMy43IDU4LjhMMjcwIDU5MGMtNy40IDEyLTIwLjIgMTkuNC0zNC4zIDIwaC0yeiIvPjwvc3ZnPg==";
 }
 
 .form-control.form-control-warning,
@@ -13973,8 +13973,8 @@ textarea {
   border-radius: 3px;
   padding: 0.625rem 0;
   margin-bottom: 20px;
-  color: #555;
-  background-color: #fff !important;
+  color: #f5f2f2;
+  background-color: #750303 !important;
   box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15);
 }
 
@@ -14117,14 +14117,14 @@ textarea {
 
 .navbar.bg-info {
   color: #fff;
-  background-color: #61041c !important;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(164, 120, 134, 0.46);
+  background-color: #750303 !important;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(0, 188, 212, 0.46);
 }
 
 .navbar.bg-info .dropdown-item:hover,
 .navbar.bg-info .dropdown-item:focus {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
-  background-color: #00bcd4;
+  background-color: #750303 ;
   color: #fff;
 }
 
@@ -14151,7 +14151,7 @@ textarea {
 
 .navbar.bg-rose {
   color: #fff;
-  background-color: #61041c!important;
+  background-color: #750303 !important;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(233, 30, 99, 0.46);
 }
 
@@ -14470,8 +14470,8 @@ textarea {
 .pagination>.page-item.active>span,
 .pagination>.page-item.active>span:focus,
 .pagination>.page-item.active>span:hover {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #941919;
+  border-color: #941919;
   color: #fff;
   box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
 }
@@ -14800,7 +14800,7 @@ h2.title {
 .description,
 .card-description,
 .footer-big p {
-  color: #000;
+  color: #999;
 }
 
 .text-warning {
@@ -15302,7 +15302,7 @@ h2.title {
 .dropdown-menu a:focus,
 .dropdown-menu a:active {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-  background-color: #e80505;
+  background-color: #e40835;
   color: #FFFFFF;
 }
 
@@ -16400,21 +16400,21 @@ footer .pull-center {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #f11313, #a8c14a);
+  background: linear-gradient(60deg, #da561b, #fb0303);
 }
 
 .card .card-header-info,
 .card.bg-info,
 .card.card-rotate.bg-info .front,
 .card.card-rotate.bg-info .back {
-  background: linear-gradient(60deg, #26c6da, #0097a7);
+  background: linear-gradient(60deg, #da561b, #fb0303);
 }
 
 .card .card-header-success,
 .card.bg-success,
 .card.card-rotate.bg-success .front,
 .card.card-rotate.bg-success .back {
-  background: linear-gradient(60deg, #66bb6a, #388e3c);
+  background: linear-gradient(60deg, #da561b, #fb0303);
 }
 
 .card .card-header-warning,
@@ -16428,14 +16428,14 @@ footer .pull-center {
 .card.bg-danger,
 .card.card-rotate.bg-danger .front,
 .card.card-rotate.bg-danger .back {
-  background: linear-gradient(60deg, #ef5350, #d32f2f);
+  background: linear-gradient(60deg, #bc4749, #d40d28);
 }
 
 .card .card-header-rose,
 .card.bg-rose,
 .card.card-rotate.bg-rose .front,
 .card.card-rotate.bg-rose .back {
-  background: linear-gradient(60deg, #ec407a, #c2185b);
+  background: linear-gradient(60deg, #e41111, #a2251f);
 }
 
 .card .card-header-primary {

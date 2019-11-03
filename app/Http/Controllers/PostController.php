@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class PostController extends Controller
 {
@@ -25,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        
+
         return view('post.create');
     }
 
@@ -53,12 +54,42 @@ class PostController extends Controller
     {
         //
     }
+    private function encode(&$array)
+    { //ENVIAR POR AJAX
+        foreach($array as $key => $value){
+              if(!is_array($value))
+                $array[$key] = utf8_encode($value);
+              else
+                $this->encode($array[$key]);
+        }
+    }
+    /**
+     * retorna data del puesto
+     * @return [type] [description]
+     */
+    public function getPost()
+    {
+        $ids = Input::get('ids');
+        $post = Post::where('status',0)->where('cellar_id',$ids)->get()->toarray();
+        $this->encode($post);
+        return response()->json($post);
+    }
+
+    public function getpostsall()
+    {
+        $ids = Input::get('ids');
+        $post = Post::where('cellar_id',$ids)->get()->toarray();
+        $this->encode($post);
+        return response()->json($post);
+    }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     *
      */
     public function edit($id)
     {

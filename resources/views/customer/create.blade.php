@@ -7,25 +7,25 @@
       @csrf
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Nombre</label>
-	    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Nombre">
+	    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Nombre"required>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Apellido</label>
-	    <input type="text" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese El Apellido">
+	    <input type="text" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese El Apellido"required>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Correo</label>
-	    <input type="text" name="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Correo Electronico">
+	    <input type="text" name="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Correo Electronico"required>
 	  </div>
 	   <div class="form-group">
 	    <label for="exampleFormControlInput1">Carnet</label>
-	    <input type="int" name="carnet" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Numero de Carnet">
+	    <input type="text" name="carnet" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Numero de Carnet"required>
 	  </div>
 	   <div class="form-group">
 	    <label for="exampleFormControlInput1">Telefono</label>
-	    <input type="text" name="phone" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Numero Telefonico">
+	    <input type="text" name="phone" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Numero Telefonico"required>
 	  </div>
-	  <button type="submit" class="badge badge-pill badge-rose">Guardar</button>
-	  <a href="{{ URL::previous() }}" class="badge badge-pill badge-rose">Regresar</a>
+	  <button type="submit" class="btn btn-primary">Guardar</button>
+	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
 	</form>
 @endsection

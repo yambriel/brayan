@@ -62,7 +62,25 @@ class CellarController extends Controller
     {
         //
     }
-
+private function encode(&$array)
+    { //ENVIAR POR AJAX
+        foreach($array as $key => $value){
+              if(!is_array($value))
+                $array[$key] = utf8_encode($value);
+              else
+                $this->encode($array[$key]);
+        }
+    }
+    /**
+     * retorna data del sotano
+     * @return [type] [description]
+     */
+    public function getCellar()
+    {
+        $cellar = Cellar::get()->toarray();
+        $this->encode($cellar);
+        return response()->json($cellar);
+    }
     /**
      * Show the form for editing the specified resource.
      *

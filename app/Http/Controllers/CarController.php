@@ -56,13 +56,33 @@ class CarController extends Controller
     {
         //
     }
-
+      private function encode(&$array)
+    { //ENVIAR POR AJAX
+        foreach($array as $key => $value){
+              if(!is_array($value))
+                $array[$key] = utf8_encode($value);
+              else
+                $this->encode($array[$key]);
+        }
+    }
+    /**
+     * retorna data del carro
+     * @return [type] [description]
+     */
+    public function getCar()
+    {
+        $ids = Input::get('ids');
+        $car = Car::where('idcustomers', $ids)->get()->toarray();
+        $this->encode($car);
+        return response()->json($car);
+    }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         $car=Car::find($id);

@@ -17,12 +17,28 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/car/customer', 'CustomerController@getCustomer');
-Route::resource('ticket', 'TicketController');
-//Route::post('/car/create', 'CarController@create')->name('car.create');
-Route::resource('car', 'CarController');
-Route::resource('customer', 'CustomerController');
-Route::resource('cellar', 'CellarController');
-Route::resource('post', 'PostController');
-Route::resource('texit', 'TexitController');
+
+Route::middleware(['auth'])->group(function () {
+		Route::get('/home', 'HomeController@index')->name('home');
+		Route::get('/car/customer', 'CustomerController@getCustomer');
+		Route::get('/ticket/customer', 'CustomerController@getCustomer');
+		Route::get('/ticket/car', 'CarController@getCar');
+		Route::get('/ticket/cellar', 'CellarController@getCellar');
+		Route::get('/ticket/posts', 'PostController@getPost');
+		Route::get('/ticket/getpostsall', 'PostController@getpostsall');
+		Route::get('/ticket/editexit/{id}', 'TicketController@editexit');
+		
+		Route::resource('ticket', 'TicketController');
+		Route::resource('customer', 'CustomerController');
+		Route::resource('car', 'CarController');
+	
+	Route::middleware(['admin'])->group(function () {
+	  
+		Route::resource('report', 'ReportController');
+		Route::resource('cellar', 'CellarController');
+		
+
+
+
+	});
+});

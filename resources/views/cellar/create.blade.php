@@ -13,7 +13,7 @@
 		    <label for="exampleFormControlInput1">Cantidad de Puestos:</label>
 		    <input type="number" name="cantidadPuestos" min="1" max="99" class="form-control" id="exampleFormControlInput1" placeholder="" required>
 		</div>
-	  <button type="submit" class="badge badge-pill badge-rose">Guardar</button>
-	  <a href="{{ URL::previous() }}" class="badge badge-pill badge-rose">Regresar</a>
+	  <button type="submit" class="btn btn-primary">Guardar</button>
+	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
 	</form>
 @endsection

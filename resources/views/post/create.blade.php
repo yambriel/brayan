@@ -7,8 +7,8 @@
       @csrf
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1">Numero del Puesto</label>
-	    <input type="text" name="number" class="form-control" id="exampleFormControlInput1" placeholder="">
-	  <button type="submit" class="badge badge-pill badge-rose">Guardar</button>
-	  <a href="{{ URL::previous() }}" class="badge badge-pill badge-rose">Regresar</a>
+	    <input type="text" name="number" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el numero del Puesto"required>
+	  <button type="submit" class="btn btn-primary">Guardar</button>
+	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
 	</form>
 @endsection

@@ -30,8 +30,8 @@
 	    <label for="exampleFormControlInput1">Color</label>
 	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Color del Vehiculo" required>
 	  </div>
-	  <button type="submit" class="badge badge-pill badge-rose">Guardar</button>
-	  <a href="{{ URL::previous() }}" class="badge badge-pill badge-rose">Regresar</a>
+	  <button type="submit" class="btn btn-primary">Guardar</button>
+	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
 	</form>
 	<script>
 		$(document).ready(function () {

@@ -54,13 +54,14 @@
         <td>{{$car->placa}}</td>
         <td>
           <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
+            <div class="col-md-12 ml-auto mr-auto">
           <form action="{{action('CarController@destroy', $car->id)}}" method="post">
            {{csrf_field()}}
            <input name="_method" type="hidden" value="DELETE">
-           <a class="btn-edit" href="{{action('CarController@edit', $car->id)}}" ><i class="fas fa-edit"></i>
+          <a data-toggle="tooltip" data-placement="top" title="Editar vehiculo" class="btn-edit" href="{{action('CarController@edit', $car->id)}}" ><i class="fas fa-edit"></i>
           </a>
-           <button class="btn-delete" type="submit"><i class="fas fa-trash"></i></i></button>
+          <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
+               </button>
           </div>
         </div>
         </td>

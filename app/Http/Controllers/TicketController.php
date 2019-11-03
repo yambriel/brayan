@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Ticket;
+use App\Customer;
+use App\Car;
+use App\Cellar;
+use App\post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
@@ -14,7 +20,15 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets=Ticket::orderBy('id','ASC')->paginate(6);
+        $tickets=Ticket::join('customers', 'tickets.id_customer', '=', 'customers.id')
+        ->join('cellars', 'tickets.cellar_id', '=', 'cellars.id')
+        ->join('cars', 'tickets.car_id', '=', 'cars.id')
+        ->join('posts', function ($join) {
+            $join->on('tickets.post_id', '=', 'posts.number')->on('tickets.cellar_id', '=', 'posts.cellar_id');
+        })
+        ->WhereNull('tickets.exit_time')
+        ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),'posts.status as estatus')
+        ->orderBy('tickets.id','ASC')->paginate(6);
         return view('ticket.index',compact('tickets'));
     }
 
@@ -25,7 +39,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        
+
         return view('ticket.create');
     }
 
@@ -37,8 +51,28 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //print_r($request);
-        Ticket::create($request->all());
+        $date1=date_create($request->entry_time);
+        $dateformat=date_format($date1, 'Y-m-d h:m');
+        // Variables para update
+        $cellar_id=$request->cellar_id;
+        $number=$request->post_id;
+        //
+        $Ticket = new Ticket;
+        $Ticket->user_id = $request->user_id;
+        $Ticket->cellar_id = $request->cellar_id;
+        $Ticket->post_id = $request->post_id;
+        $Ticket->car_id = $request->car_id;
+        $Ticket->entry_time = $dateformat;
+        $Ticket->id_customer = $request->id_customer;
+        $Ticket->cellar_id = $request->cellar_id;
+        $Ticket->systemTimeEntry = $request->systemTimeEntry;
+        $Ticket->save();
+
+        //Actualizar el estatus del puesto
+        Post::where('cellar_id',$cellar_id)->where('number',$number)
+                    ->update(['status' => 1]);
+
+        // Ticket::create($request->all());
         return redirect()->route('ticket.index')->with('success','Registro creado satisfactoriamente');
         //die();
     }
@@ -62,8 +96,18 @@ class TicketController extends Controller
      */
     public function edit($id)
     {
+        $fieldDisabled=0;
         $ticket=Ticket::find($id);
-        return view('ticket.edit',compact('ticket'));
+        return view('ticket.edit')
+        ->with('ticket',$ticket)
+        ->with('fieldDisabled',$fieldDisabled);
+    }
+
+    public function editexit($id)
+    {
+        $fieldDisabled=1;
+        $ticket=Ticket::find($id);
+        return view('ticket.edit',compact('ticket',$fieldDisabled));
     }
 
     /**
