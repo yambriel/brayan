@@ -54,7 +54,8 @@ class TicketController extends Controller
         $ticket=Ticket::where('id_customer',$request->id_customer)
                     ->where('car_id',$request->car_id)
                     ->whereNotNull('entry_time')
-                    ->WhereNull('exit_time');
+                    ->WhereNull('exit_time')
+                    ->get();
         if(count($ticket) == 0){
             $date1=date_create($request->entry_time);
             $dateformat=date_format($date1, 'Y-m-d h:m');
