@@ -1,0 +1,10 @@
+.btn-delete {
+	outline: none;
+    border: 0;
+    background-color: transparent;
+    color: #e60a13;	
+}
+
+.btn-edit {
+	padding-right: 10px;
+}
