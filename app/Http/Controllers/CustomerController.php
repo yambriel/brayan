@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+use App\Car;
 use Validator;
 use App\Http\Controllers\Controller;
 
@@ -48,6 +49,8 @@ class CustomerController extends Controller
             'email'     => 'required|email',
             'carnet'    => 'numeric|min:8',
             'phone'     => 'numeric|min:12',
+            'extension' => 'numeric|min:12',
+                
 
             ]);
 
@@ -56,11 +59,28 @@ class CustomerController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+            $modelcar =  $request->model;
+            $colorcar =  $request->color;
+            $placacar =  $request->placa;
+            $Customer = new Customer;
+            $Customer->name = $request->name;
+            $Customer->last_name = $request->last_name;
+            $Customer->email = $request->email;
+            $Customer->carnet = $request->carnet;
+            $Customer->phone = $request->phone;
+            $Customer->extension = $request->extension;
+            $Customer->save();
+            $idCustomerRecienGuardada = $Customer->id;
+            $Car = new Car;
+            $Car->model =$modelcar;
+            $Car->color = $colorcar;
+            $Car->placa = $placacar;
+            $Car->idcustomers = $idCustomerRecienGuardada;
+            $Car->save();
 
-
-        Customer::create($request->all());
+        // Customer::create($request->all());
+        // Car::create($request->all());
         return redirect()->route('customer.index')->with('success','Registro creado satisfactoriamente');
-        die();
     }
 
     /**
