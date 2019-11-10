@@ -10,7 +10,7 @@
  <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
               <div class="navbar-translate">
-                <a class="navbar-brand" href="#0">vehiculos </a>
+                <a class="navbar-brand" href="{{ route('car.index') }}">vehiculos </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="sr-only">Toggle navigation</span>
                   <span class="navbar-toggler-icon"></span>
@@ -37,8 +37,7 @@
   <div class="box-body no-padding">
     <table class="table table-striped">
       <tr>
-        <th style="width: 10px">#</th>
-        <th>cliente</th>
+        <th>Trabajador</th>
         <th>Modelo</th>
         <th>Color</th>
         <th>Placa</th>
@@ -47,7 +46,6 @@
       @if($cars->count())  
       @foreach($cars as $car)  
       <tr>
-        <td>{{$car->id}}</td>
         <td>{{$car->name}}</td>
         <td>{{$car->model}}</td>
         <td>{{$car->color}}</td>

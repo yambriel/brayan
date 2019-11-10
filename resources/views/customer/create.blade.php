@@ -29,6 +29,10 @@
 	    <label for="exampleFormControlInput1">Telefono</label>
 	    <input type="number" name="phone" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Numero Telefonico"required value="{{ old('phone') }}"> 
 	  </div>
+	  <div class="form-group">
+	    <label for="exampleFormControlInput1">Extensión</label>
+	    <input type="number" name="extension" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese Su Numero de Extensión"required value="{{ old('extension') }}"> 
+	  </div>
 	  <button type="submit" class="btn btn-primary">Guardar</button>
 	  <a href="{{route('customer.index')}}" class="btn btn-primary">Regresar</a>
 	</form>

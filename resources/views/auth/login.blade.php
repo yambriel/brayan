@@ -12,7 +12,7 @@
             <form class="form" method="POST" action="{{ route('login') }}">
                 @csrf
               <div class="card-header card-header-primary text-center">
-                <h4 class="card-title">Inicio de sección</h4>
+                <h4 class="card-title">Ingresar</h4>
               </div>
               <p class="description text-center">Ingresa tus datos</p>
                

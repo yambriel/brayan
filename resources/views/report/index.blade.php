@@ -30,7 +30,7 @@
     <table class="table table-striped">
       <tr>
         <th style="width: 8px">#</th>
-        <th>Cliente</th>
+        <th>Trabajador</th>
         <th>Carnet</th>
         <th>Carro</th>
         <th>Sotano</th>
