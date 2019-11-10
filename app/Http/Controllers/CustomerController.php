@@ -42,26 +42,21 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            
+
             'name'      => 'required|min:1|max:15',
             'last_name' => 'required|min:1|max:15',
             'email'     => 'required|email',
-<<<<<<< HEAD
             'carnet'    => 'numeric|min:1|max:8',
             'phone'     => 'numeric|min:1|max:12',
-=======
-            'carnet'    => 'numeric|min:7',
-            'phone'     => 'numeric|min:11',
->>>>>>> b2116ff97a865826c192d95c676d7f6065df5a9a
 
             ]);
-        
+
         if ($validator->fails()) {
             return redirect('customer/create')
                         ->withErrors($validator)
                         ->withInput();
         }
-        
+
 
         Customer::create($request->all());
         return redirect()->route('customer.index')->with('success','Registro creado satisfactoriamente');
@@ -105,7 +100,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        
+
 
         $customer=Customer::find($id);
         return view('customer.edit',compact('customer'));
@@ -121,26 +116,20 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            
+
             'name'      => 'required|min:1|max:15',
             'last_name' => 'required|min:1|max:15',
             'email'     => 'required|email',
-<<<<<<< HEAD
             'carnet'    => 'numeric|min:1|max:8',
             'phone'     => 'numeric|min:1|max:12',
-=======
-            'carnet'    => 'numeric|min:7',
-            'phone'     => 'numeric|min:11',
->>>>>>> b2116ff97a865826c192d95c676d7f6065df5a9a
-
             ]);
-        
+
         if ($validator->fails()) {
             return redirect('customer/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
-        
+
         Customer::find($id)->update($request->all());
         return redirect()->route('customer.index')->with('success','Registro actualizado satisfactoriamente');
 
