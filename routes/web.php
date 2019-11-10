@@ -27,18 +27,18 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/ticket/posts', 'PostController@getPost');
 		Route::get('/ticket/getpostsall', 'PostController@getpostsall');
 		Route::get('/ticket/editexit/{id}', 'TicketController@editexit');
-		
+
 		Route::post('customer', 'CustomerController@store');
-	
+
 		Route::resource('ticket', 'TicketController');
 		Route::resource('customer', 'CustomerController');
 		Route::resource('car', 'CarController');
-	
+
 	Route::middleware(['admin'])->group(function () {
-	  
+
+		Route::get('/Ticket/getDelete/{id}', 'TicketController@destroy');
 		Route::resource('report', 'ReportController');
 		Route::resource('cellar', 'CellarController');
-		
 
 
 
