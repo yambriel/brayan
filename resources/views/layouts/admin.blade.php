@@ -89,17 +89,17 @@
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a href="{{ route('customer.index') }}" class="nav-link">cliente</a>
+                    <a href="{{ route('customer.index') }}" class="nav-link">Trabajadores</a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('car.index') }}" class="nav-link">vehiculo</a>
+                    <a href="{{ route('car.index') }}" class="nav-link">Vehiculo</a>
                   </li>
                     <li class="nav-item">
                     <a href="{{ route('ticket.index') }}" class="nav-link">Ticket</a>
                   </li>
                   @if (Auth::user()->admin)
                     <li class="nav-item">
-                      <a href="{{ route('cellar.index') }}" class="nav-link">sotano</a>
+                      <a href="{{ route('cellar.index') }}" class="nav-link">SotanoS</a>
 
                     </li>
                     <li class="nav-item">

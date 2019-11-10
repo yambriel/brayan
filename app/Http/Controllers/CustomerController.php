@@ -46,8 +46,8 @@ class CustomerController extends Controller
             'name'      => 'required|min:1|max:15',
             'last_name' => 'required|min:1|max:15',
             'email'     => 'required|email',
-            'carnet'    => 'numeric|min:1|max:8',
-            'phone'     => 'numeric|min:1|max:12',
+            'carnet'    => 'numeric|min:8',
+            'phone'     => 'numeric|min:12',
 
             ]);
 
@@ -120,12 +120,12 @@ class CustomerController extends Controller
             'name'      => 'required|min:1|max:15',
             'last_name' => 'required|min:1|max:15',
             'email'     => 'required|email',
-            'carnet'    => 'numeric|min:1|max:8',
-            'phone'     => 'numeric|min:1|max:12',
+            'carnet'    => 'numeric|min:8',
+            'phone'     => 'numeric|min:12',
             ]);
 
         if ($validator->fails()) {
-            return redirect('customer/edit')
+            return redirect('customer/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
