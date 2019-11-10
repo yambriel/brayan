@@ -120,11 +120,11 @@ class CellarController extends Controller
        $validator = Validator::make($request->all(), [
 
             'name'               => 'required|min:1|max:15',
-            'cantidadPuestos'    => 'numeric|min:99',
+            'cantidadPuestos'    => 'numeric|min:1|max:99',
             ]);
 
         if ($validator->fails()) {
-            return redirect('cellar/edit')
+            return redirect('cellar/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
