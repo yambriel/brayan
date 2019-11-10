@@ -46,8 +46,13 @@ class CustomerController extends Controller
             'name'      => 'required|min:1|max:15',
             'last_name' => 'required|min:1|max:15',
             'email'     => 'required|email',
+<<<<<<< HEAD
             'carnet'    => 'numeric|min:1|max:8',
             'phone'     => 'numeric|min:1|max:12',
+=======
+            'carnet'    => 'numeric|min:7',
+            'phone'     => 'numeric|min:11',
+>>>>>>> b2116ff97a865826c192d95c676d7f6065df5a9a
 
             ]);
         
@@ -120,8 +125,13 @@ class CustomerController extends Controller
             'name'      => 'required|min:1|max:15',
             'last_name' => 'required|min:1|max:15',
             'email'     => 'required|email',
+<<<<<<< HEAD
             'carnet'    => 'numeric|min:1|max:8',
             'phone'     => 'numeric|min:1|max:12',
+=======
+            'carnet'    => 'numeric|min:7',
+            'phone'     => 'numeric|min:11',
+>>>>>>> b2116ff97a865826c192d95c676d7f6065df5a9a
 
             ]);
         

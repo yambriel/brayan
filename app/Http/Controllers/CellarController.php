@@ -40,13 +40,13 @@ class CellarController extends Controller
      */
     public function store(Request $request)
     {
-       
+
        $validator = Validator::make($request->all(), [
-            
+
             'name'               => 'required|min:1|max:15',
             'cantidadPuestos'    => 'numeric|min:1|max:99',
             ]);
-        
+
         if ($validator->fails()) {
             return redirect('cellar/create')
                         ->withErrors($validator)
@@ -118,11 +118,11 @@ class CellarController extends Controller
     public function update(Request $request, $id)
     {
        $validator = Validator::make($request->all(), [
-            
+
             'name'               => 'required|min:1|max:15',
             'cantidadPuestos'    => 'numeric|min:99',
             ]);
-        
+
         if ($validator->fails()) {
             return redirect('cellar/edit')
                         ->withErrors($validator)
