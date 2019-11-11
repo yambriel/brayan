@@ -51,14 +51,16 @@
         <td>
           <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
-          <form action="{{action('CellarController@destroy', $cellar->id)}}" method="post">
+          {{-- <form action="{{action('CellarController@destroy', $cellar->id)}}" method="post">
            {{csrf_field()}}
-           <input name="_method" type="hidden" value="DELETE">
+           <input name="_method" type="hidden" value="DELETE"> --}}
            <a data-toggle="tooltip" data-placement="top" title="Editar Sotano" class="btn-edit" href="{{action('CellarController@edit', $cellar->id)}}" ><i class="fas fa-edit"></i>
           </a>
-          <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
+          <a class="deleted" data-id="{{$cellar->id}}" data-name="{{$cellar->name}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
+          </a>
+          {{-- <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
                </button>
-             </form>
+             </form> --}}
           </div>
         </div>
         </td>
@@ -77,4 +79,51 @@
   {{ $cellars->links() }}
   <!-- /.box-body -->
 </div>
+<script>
+    $(document).ready(function() {
+      $('.deleted').click(function(e) {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        Swal.fire({
+            title: 'Eliminar',
+            text: "Desea Eliminar el Sotano: "+name+"?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si!',
+            cancelButtonText: 'No',
+            buttonsStyling: true
+        }).then(function (e) {
+            if (e.value === true) {
+              $.ajax({
+                  type: "GET",
+                  url: "{{url('/')}}/cellar/getDelete/"+id,
+                  cache: false,
+                  success: function(response) {
+                      Swal.fire({title: "Procesado", 
+                        showCancelButton: false,
+                        text: "El Sotano: "+name+" se ha eliminado satisfactoriamente",
+                        icon: 'success',
+                      }).then(result => {
+                        if (result.value) {
+                          location.reload();
+                          // handle Confirm button click
+                          // result.value will contain `true` or the input value
+                        }
+                      })
+                  },
+                  failure: function (response) {
+                      Swal.fire(
+                      "Error Interno",
+                      "Ah ocurrido un error al eliminar el Sotano", // had a missing comma
+                      "error"
+                      )
+                  }
+              });
+          }
+        });
+      });
+    });
+</script>
 @endsection

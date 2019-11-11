@@ -37,6 +37,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::middleware(['admin'])->group(function () {
 
 		Route::get('/Ticket/getDelete/{id}', 'TicketController@destroy');
+		Route::get('/customer/getDelete/{id}', 'CustomerController@destroy');
+		Route::get('/car/getDelete/{id}', 'CarController@destroy');
+		Route::get('/cellar/getDelete/{id}', 'CellarController@destroy');
 		Route::resource('report', 'ReportController');
 		Route::resource('cellar', 'CellarController');
 
