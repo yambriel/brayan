@@ -26,6 +26,7 @@
   {{-- con error --}}
   <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/sweetalert2.all.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/Chart.min.js') }}" type="text/javascript"></script>
 </head>
 <body class="@yield('body-class')">
 <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">

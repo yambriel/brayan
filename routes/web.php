@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/ticket/car', 'CarController@getCar');
 		Route::get('/ticket/cellar', 'CellarController@getCellar');
 		Route::get('/ticket/posts', 'PostController@getPost');
+		Route::get('/home/chartRequest', 'TicketController@getChart');
 		Route::get('/ticket/getpostsall', 'PostController@getpostsall');
 		Route::get('/ticket/editexit/{id}', 'TicketController@editexit');
 
