@@ -27,7 +27,7 @@ class TicketController extends Controller
             $join->on('tickets.post_id', '=', 'posts.number')->on('tickets.cellar_id', '=', 'posts.cellar_id');
         })
         ->WhereNull('tickets.exit_time')
-        ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),'posts.status as estatus')
+        ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(tickets.input_port) as imput'),'posts.status as estatus')
         ->orderBy('tickets.id','ASC')->paginate(6);
         return view('ticket.index',compact('tickets'));
     }
@@ -55,6 +55,8 @@ class TicketController extends Controller
                     ->where('car_id',$request->car_id)
                     ->whereNotNull('entry_time')
                     ->WhereNull('exit_time')
+                    ->whereNotNull('input_port')
+                    ->WhereNull('output_port')
                     ->get();
         if(count($ticket) == 0){
             $date1=date_create($request->entry_time);
@@ -71,6 +73,7 @@ class TicketController extends Controller
             $Ticket->id_customer = $request->id_customer;
             $Ticket->entry_time = $dateformat;
             $Ticket->systemTimeEntry = $request->systemTimeEntry;
+            $Ticket->input_port = $request->input_port;
             $Ticket->save();
 
             //Actualizar el estatus del puesto
@@ -107,7 +110,7 @@ class TicketController extends Controller
     public function edit($id)
     {
         $fieldDisabled=0;
-        $ticket=Ticket::where('id',$id)->select('id','user_id','cellar_id','post_id','car_id','id_customer',DB::raw('DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i") as entry_time'),'systemTimeEntry')->first();
+        $ticket=Ticket::where('id',$id)->select('id','user_id','cellar_id','post_id','car_id','id_customer','input_port',DB::raw('DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i") as entry_time'),'systemTimeEntry')->first();
         return view('ticket.edit')
         ->with('ticket',$ticket)
         ->with('fieldDisabled',$fieldDisabled);
@@ -116,7 +119,7 @@ class TicketController extends Controller
     public function editexit($id)
     {
         $fieldDisabled=1;
-        $ticket=Ticket::where('id',$id)->select('id','user_id','cellar_id','post_id','car_id','id_customer',DB::raw('DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i") as entry_time'),'systemTimeEntry')->first();
+        $ticket=Ticket::where('id',$id)->select('id','user_id','cellar_id','post_id','car_id','id_customer','output_port',DB::raw('DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i") as entry_time'),'systemTimeEntry')->first();
         return view('ticket.edit')
         ->with('ticket',$ticket)
         ->with('fieldDisabled',$fieldDisabled);
@@ -143,13 +146,14 @@ class TicketController extends Controller
             $Ticket = Ticket::find($id);
             $Ticket->exit_time = $dateformatExit;
             $Ticket->systemTimeExit = $request->systemTimeExit;
+            $Ticket->output_port = $request->output_port;
             $Ticket->save();
 
             //Actualizar el estatus del puesto
             Post::where('cellar_id',$cellar_id)->where('number',$number)
                         ->update(['status' => 0]);
 
-            return redirect()->route('ticket.index')->with('success','Fecha de Salida Agregada Satisfactoriamente');
+            return redirect()->route('ticket.index')->with('success','la puerta y fecha de Salida Agregada Satisfactoriamente');
         } else {
             $date1=date_create($request->entry_time);
             $dateformatExit=date_format($date1, 'Y-m-d h:m');
@@ -161,6 +165,7 @@ class TicketController extends Controller
             $Ticket->id_customer = $request->id_customer;
             $Ticket->entry_time = $dateformatExit;
             $Ticket->systemTimeEntry = $request->systemTimeEntry;
+            $Ticket->input_port = $request->input_port;
             $Ticket->save();
             return redirect()->route('ticket.index')->with('success','Registro actualizado satisfactoriamente');
         }

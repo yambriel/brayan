@@ -7,6 +7,9 @@
 @include('layouts.success')
 @include('layouts.errors')
 
+    <div class="text-center">
+     <h3 class="title">Reportes </h3>
+    </div>
  <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
               <div class="navbar-translate">
@@ -20,6 +23,8 @@
               </div> 
             </div>
           </nav>
+
+
 
      <div class="box">
   <div class="box-header">

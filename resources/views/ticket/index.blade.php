@@ -52,6 +52,7 @@
         <th>Sotano</th>
         <th>Puesto</th>
         <th>Hora de Entrada</th>
+        <th>Puerta de Entrada</th>
         <th>Acción</th>
       </tr>
       @if($tickets->count())  
@@ -64,6 +65,7 @@
         <td>{{$ticket->namesotado}}</td>
         <td>{{$ticket->number}}</td>
         <td>{{$ticket->dateentry}}</td>
+        <td>{{$ticket->imput}}</td>
         <td>
           <div class="row">
             <div class="col-md-12 ml-auto mr-auto">

@@ -27,7 +27,7 @@
               </div>
             </div>
           </nav>
-      <div class="box">
+<div class="box">
   <div class="box-header">
     <h3 class="box-title">Trabajadores Registrados</h3>
   </div>
