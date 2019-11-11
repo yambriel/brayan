@@ -10,6 +10,7 @@ use App\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 
 class TicketController extends Controller
 {
@@ -170,6 +171,43 @@ class TicketController extends Controller
             return redirect()->route('ticket.index')->with('success','Registro actualizado satisfactoriamente');
         }
 
+    }
+
+    public function getChart()
+    {
+        //Activos
+        $post1 = Ticket::WhereNull('exit_time')->get()->toarray();
+        //Inactivos
+        $post2 = Ticket::whereNotNull('entry_time')->whereNotNull('exit_time')->get()->toarray();
+        $total_reg = (count($post1)+count($post2));
+        $arrpost1['cant'][0] = (count($post1) > 0 ? count($post1) : 0);
+        $arrpost1['cant'][1] = (count($post2) > 0 ? count($post2) : 0);
+        $arrpost1['row'] = $total_reg;
+
+
+        $post3 = DB::select('SELECT count(*) cant, months FROM (SELECT MONTH(exit_time) months, id FROM tickets where entry_time is not null AND exit_time is not null and year(exit_time)=year(curdate()) group by month(exit_time), id order by exit_time) AS CANT group by months');
+        $total_reg2 = (count($post3));
+
+        foreach ($post3 as $value) {
+            $arrpost2[$value->months]=$value->cant;
+        }
+
+        $arrchart2['cant2'][0] = (isset($arrpost2['1']) ? $arrpost2['1'] : 0);
+        $arrchart2['cant2'][1] = (isset($arrpost2['2']) ? $arrpost2['2'] : 0);
+        $arrchart2['cant2'][2] = (isset($arrpost2['3']) ? $arrpost2['3'] : 0);
+        $arrchart2['cant2'][3] = (isset($arrpost2['4']) ? $arrpost2['4'] : 0);
+        $arrchart2['cant2'][4] = (isset($arrpost2['5']) ? $arrpost2['5'] : 0);
+        $arrchart2['cant2'][5] = (isset($arrpost2['6']) ? $arrpost2['6'] : 0);
+        $arrchart2['cant2'][6] = (isset($arrpost2['7']) ? $arrpost2['7'] : 0);
+        $arrchart2['cant2'][7] = (isset($arrpost2['8']) ? $arrpost2['8'] : 0);
+        $arrchart2['cant2'][8] = (isset($arrpost2['9']) ? $arrpost2['9'] : 0);
+        $arrchart2['cant2'][9] = (isset($arrpost2['10']) ? $arrpost2['10'] : 0);
+        $arrchart2['cant2'][10] = (isset($arrpost2['11']) ? $arrpost2['11'] : 0);
+        $arrchart2['cant2'][11] = (isset($arrpost2['12']) ? $arrpost2['12'] : 0);
+        $arrchart2['row2'] = $total_reg2;
+
+        return response()->json(['arrpost'=>$arrpost1,'arrchart2'=>$arrchart2]);
+        // ,'post'=>$post,'comment'=>$comment
     }
 
     /**

@@ -55,14 +55,16 @@
         <td>
           <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
-              <form action="{{action('CustomerController@destroy', $customer->id)}}" method="post">
+              {{--< form action="{{action('CustomerController@destroy', $customer->id)}}" method="post">
                  {{csrf_field()}}
-                 <input name="_method" type="hidden" value="DELETE">
+                 <input name="_method" type="hidden" value="DELETE"> --}}
                  <a data-toggle="tooltip" data-placement="top" title="Editar Trabajador" class="btn-edit"href="{{action('CustomerController@edit', $customer->id)}}" ><i class="fas fa-edit"></i>
                 </a>
-              <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
-               </button>
-              </form>
+               <a class="deleted" data-id="{{$customer->id}}" data-name="{{$customer->name}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
+              </a>
+              {{-- <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
+               </button> --}}
+              {{-- </form> --}}
             </div>
           </div>
         </td>
@@ -78,4 +80,51 @@
   {{ $customers->links() }}
   <!-- /.box-body -->
 </div>
+<script>
+    $(document).ready(function() {
+      $('.deleted').click(function(e) {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        Swal.fire({
+            title: 'Eliminar',
+            text: "Desea Eliminar el Trabajador: "+name+"?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si!',
+            cancelButtonText: 'No',
+            buttonsStyling: true
+        }).then(function (e) {
+            if (e.value === true) {
+              $.ajax({
+                  type: "GET",
+                  url: "{{url('/')}}/customer/getDelete/"+id,
+                  cache: false,
+                  success: function(response) {
+                      Swal.fire({title: "Procesado", 
+                        showCancelButton: false,
+                        text: "El Trabajador: "+name+" se ha eliminado satisfactoriamente",
+                        icon: 'success',
+                      }).then(result => {
+                        if (result.value) {
+                          location.reload();
+                          // handle Confirm button click
+                          // result.value will contain `true` or the input value
+                        }
+                      })
+                  },
+                  failure: function (response) {
+                      Swal.fire(
+                      "Error Interno",
+                      "Ah ocurrido un error al eliminar el Trabajador", // had a missing comma
+                      "error"
+                      )
+                  }
+              });
+          }
+        });
+      });
+    });
+</script>
 @endsection
