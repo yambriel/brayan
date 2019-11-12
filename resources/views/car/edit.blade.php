@@ -13,12 +13,12 @@
       <div class="form-group">
 	  	<div class="row">
 		  	<div class="col col-lg-2">
-		    	<label for="co_cliente">Cliente</label>
+		    	<label for="co_cliente">Trabajador</label>
 	    	</div>
 	   	</div>
 	  	<div class="row">
 		  	<div class="col col-lg-2">
-			    <select id="co_cliente" name="idcustomers" data-placeholder="Elija el Cliente" class="chosen-select" tabindex="2" style="width: 450px;"required>
+			    <select id="co_cliente" name="idcustomers" data-placeholder="Elija el Trabajador" class="chosen-select" tabindex="2" style="width: 450px;"required>
 			    </select>
 	    	</div>
 	    </div>

@@ -30,6 +30,11 @@
 	    <label for="exampleFormControlInput1">Telefono</label>
 	    <input type="number" name="phone" class="form-control" id="exampleFormControlInput1" value="{{$customer->phone}}"required>
 	  </div>
+	    <div class="form-group">
+	    <label for="exampleFormControlInput1">Extensión</label>
+	    <input type="number" name="extension" class="form-control" id="exampleFormControlInput1" value="{{$customer->extension}}"required>
+	  </div>
+	 
 	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 	  <a href="{{ route('customer.index')}}" class="btn btn-primary">Regresar</a>
 	</form>

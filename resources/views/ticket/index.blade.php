@@ -46,12 +46,13 @@
     <table class="table table-striped">
       <tr>
         <th style="width: 8px">#</th>
-        <th>Cliente</th>
+        <th>Trabajador</th>
         <th>Carnet</th>
         <th>Carro</th>
         <th>Sotano</th>
         <th>Puesto</th>
         <th>Hora de Entrada</th>
+        <th>Puerta de Entrada</th>
         <th>Acción</th>
       </tr>
       @if($tickets->count())  
@@ -64,19 +65,22 @@
         <td>{{$ticket->namesotado}}</td>
         <td>{{$ticket->number}}</td>
         <td>{{$ticket->dateentry}}</td>
+        <td>{{$ticket->imput}}</td>
         <td>
           <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
-              <form action="{{action('TicketController@destroy', $ticket->id)}}" method="post">
-               {{csrf_field()}}
-               <input name="_method" type="hidden" value="DELETE">
+              {{-- <form action="{{action('TicketController@destroy', $ticket->id)}}" method="post"> --}}
+               {{-- {{csrf_field()}} --}}
+               {{-- <input name="_method" type="hidden" value="DELETE"> --}}
                <a data-toggle="tooltip" data-placement="top" title="Editar Ticket" class="btn-edit" href="{{action('TicketController@edit', $ticket->id)}}" ><i class="fas fa-edit"></i>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Ingresar Fecha Salida" href="{{url('/')}}/ticket/editexit/{{$ticket->id}}" ><i class="fas fa-calendar-alt"></i>
               </a>
-               <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
-               </button>
-             </form>
+              <a class="deleted" data-id="{{$ticket->id}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
+              </a>
+               {{-- <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
+               </button> --}}
+             {{-- </form> --}}
           </div>
         </div>
         </td>
@@ -95,5 +99,50 @@
   {{ $tickets->links() }}
   <!-- /.box-body -->
 </div>
-
+<script>
+    $(document).ready(function() {
+      $('.deleted').click(function(e) {
+        var id = $(this).data('id');
+        Swal.fire({
+            title: 'Eliminar',
+            text: "Desea Eliminar el Ticket "+id+"?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si!',
+            cancelButtonText: 'No',
+            buttonsStyling: true
+        }).then(function (e) {
+            if (e.value === true) {
+              $.ajax({
+                  type: "GET",
+                  url: "{{url('/')}}/Ticket/getDelete/"+id,
+                  cache: false,
+                  success: function(response) {
+                      Swal.fire({title: "Procesado", 
+                        showCancelButton: false,
+                        text: "El Ticket "+id+" se ha eliminado satisfactoriamente",
+                        icon: 'success',
+                      }).then(result => {
+                        if (result.value) {
+                          location.reload();
+                          // handle Confirm button click
+                          // result.value will contain `true` or the input value
+                        }
+                      })
+                  },
+                  failure: function (response) {
+                      Swal.fire(
+                      "Error Interno",
+                      "Ah ocurrido un error al eliminar el ticket", // had a missing comma
+                      "error"
+                      )
+                  }
+              });
+          }
+        });
+      });
+    });
+</script>
 @endsection

@@ -17,16 +17,31 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ asset('demo/demo.css') }}" rel="stylesheet" />
 
+   <!-- DATATABLES -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+
+
   <link href="{{ asset('fontawesome/css/fontawesome.css') }}" rel="stylesheet">
   <link href="{{ asset('fontawesome/css/brands.css') }}" rel="stylesheet">
   <link href="{{ asset('fontawesome/css/solid.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('chosen/chosen.min.css') }}">
+
+
+
   <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
   {{-- con error --}}
   <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
-</head>
+  <script src="{{ asset('js/sweetalert2.all.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/Chart.min.js') }}" type="text/javascript"></script>
+  <!-- DATATABLES -->
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
+
+</head>
 <body class="@yield('body-class')">
 <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
@@ -90,17 +105,17 @@
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a href="{{ route('customer.index') }}" class="nav-link">cliente</a>
+                    <a href="{{ route('customer.index') }}" class="nav-link">Trabajadores</a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('car.index') }}" class="nav-link">vehiculo</a>
+                    <a href="{{ route('car.index') }}" class="nav-link">Vehiculo</a>
                   </li>
                     <li class="nav-item">
                     <a href="{{ route('ticket.index') }}" class="nav-link">Ticket</a>
                   </li>
                   @if (Auth::user()->admin)
                     <li class="nav-item">
-                      <a href="{{ route('cellar.index') }}" class="nav-link">sotano</a>
+                      <a href="{{ route('cellar.index') }}" class="nav-link">SotanoS</a>
 
                     </li>
                     <li class="nav-item">
@@ -129,33 +144,21 @@
               <nav class="float-left">
                 <ul>
                   <li>
-                    <a href="https://www.creative-tim.com">
-                      Creative Tim
-                    </a>
                   </li>
                   <li>
-                    <a href="https://creative-tim.com/presentation">
-                      About Us
-                    </a>
                   </li>
                   <li>
-                    <a href="http://blog.creative-tim.com">
-                      Blog
-                    </a>
                   </li>
                   <li>
-                    <a href="https://www.creative-tim.com/license">
-                      Licenses
-                    </a>
                   </li>
                 </ul>
               </nav>
               <div class="copyright float-right">
-                &copy;
-                <script>
+                 CEPDVSA  - Control de Estacionamiento de PDVSA La Campiña -Todos los Derechos Reservados.
+                 &copy;
+                 <script>
                   document.write(new Date().getFullYear())
-                </script>, made with <i class="material-icons">favorite</i> by
-                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                </script>
               </div>
             </div>
           </footer>
@@ -174,6 +177,4 @@
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   {{-- sin error --}}
   {{-- <script src="{{ asset('js/material-kit.min.js') }}" type="text/javascript"></script> --}}
-
-
 </html>

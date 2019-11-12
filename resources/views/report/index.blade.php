@@ -7,6 +7,9 @@
 @include('layouts.success')
 @include('layouts.errors')
 
+    <div class="text-center">
+     <h3 class="title">Reportes </h3>
+    </div>
  <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
               <div class="navbar-translate">
@@ -21,6 +24,8 @@
             </div>
           </nav>
 
+
+
      <div class="box">
   <div class="box-header">
     <h3 class="box-title">Reportes de Tickets</h3>
@@ -30,7 +35,7 @@
     <table class="table table-striped">
       <tr>
         <th style="width: 8px">#</th>
-        <th>Cliente</th>
+        <th>Trabajador</th>
         <th>Carnet</th>
         <th>Carro</th>
         <th>Sotano</th>

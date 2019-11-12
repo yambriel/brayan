@@ -13,12 +13,12 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_cliente">Cliente</label>
+			    	<label for="co_cliente">Trabajador</label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="co_cliente" name="id_customer" data-placeholder="Elija el Cliente" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
+				    <select id="co_cliente" name="id_customer" data-placeholder="Elija el Trabajador" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
 				    	<option value=""></option>
 				    </select>
 		    	</div>
@@ -92,6 +92,24 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+		  	<div class="row">
+			  	<div class="col col-lg-2">
+			    	<label for="co_sotano">Puerta de Entrada</label>
+		    	</div>
+		   	</div>
+		  	<div class="row">
+			  	<div class="col col-lg-2">
+				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
+				    	<option value=""></option>
+				    	<option value="Salida 1">Salida 1</option>
+				    	<option value="Salida 2">Salida 2</option>
+				    	<option value="Salida 3">Salida 3</option>
+				    	<option value=""></option>
+				    </select>
+		    	</div>
+		    </div>
+		</div>
 	  <button type="submit" class="btn btn-primary">Guardar</button>
 	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
 	</form>
@@ -121,7 +139,7 @@
 									.append($("<span>",{"aria-hidden":"true"})
 										.append($("<i>",{"class":"material-icons"}).text('clear')) ))
 								.append($("<b>").text('Error Alert:'))
-								.append('No hay clientes registrados')))
+								.append('No hay Trabajadores registrados')))
 					}
 				},
 				error: function(xhr, textStatus, thrownError) {

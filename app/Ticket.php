@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
      protected $fillable = [
-        'user_id','cellar_id','post_id','car_id','entry_time','exit_time','id_customer','systemTimeEntry'
+        'user_id','cellar_id','post_id','car_id','entry_time','exit_time','id_customer','systemTimeEntry','input_port','output_port'
     ];
+    
     public function user()
     {
         return $this->belongsTo('App\User');

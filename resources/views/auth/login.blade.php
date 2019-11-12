@@ -12,7 +12,7 @@
             <form class="form" method="POST" action="{{ route('login') }}">
                 @csrf
               <div class="card-header card-header-primary text-center">
-                <h4 class="card-title">Inicio de sección</h4>
+                <h4 class="card-title">Ingresar</h4>
               </div>
               <p class="description text-center">Ingresa tus datos</p>
                
@@ -46,40 +46,28 @@
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <div class="container">
-        <nav class="float-left">
-          <ul>
-            <li>
-              <a href="https://www.creative-tim.com">
-                Creative Tim
-              </a>
-            </li>
-            <li>
-              <a href="https://creative-tim.com/presentation">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="http://blog.creative-tim.com">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a href="https://www.creative-tim.com/license">
-                Licenses
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="copyright float-right">
-          &copy;
-          <script>
-            document.write(new Date().getFullYear())
-          </script>, made with <i class="material-icons">favorite</i> by
-          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-        </div>
-      </div>
-    </footer>
+    <footer class="footer footer-default">
+            <div class="container">
+              <nav class="float-left">
+                <ul>
+                  <li>
+                  </li>
+                  <li>
+                  </li>
+                  <li>
+                  </li>
+                  <li>
+                  </li>
+                </ul>
+              </nav>
+              <div class="copyright float-right">
+                 CEPDVSA  - Control de Estacionamiento de PDVSA La Campiña -Todos los Derechos Reservados.
+                 &copy;
+                 <script>
+                  document.write(new Date().getFullYear())
+                </script>
+              </div>
+            </div>
+          </footer>
 </div>
 @endsection

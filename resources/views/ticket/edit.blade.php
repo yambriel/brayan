@@ -89,6 +89,25 @@
 	            </label>
 			</div>
 		</div>
+			<div class="form-group puerta">
+		  	<div class="row">
+			  	<div class="col col-lg-2">
+			    	<label for="input_port">Puerta de Entrada</label>
+		    	</div>
+		   	</div>
+		  	<div class="row">
+			  	<div class="col col-lg-2">
+				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
+				    	<option value=""></option>
+				    	<option value="Salida 1">Salida 1</option>
+				    	<option value="Salida 2">Salida 2</option>
+				    	<option value="Salida 3">Salida 3</option>
+				    	<option value=""></option>
+				    </select>
+		    	</div>
+		    </div>
+		</div>
+
 		<div class="form-group hidden">
 		   	<label class="label-control">Fecha y Hora de Salida</label>
 		    <input type="text" ID="exit_time" name="exit_time" class="form-control datetimepicker" value="{{ old('exit_time') }}"/>
@@ -111,7 +130,26 @@
 	                </span>
 	            </label>
 			</div>
+		</div>		 			  
+		<div class="form-group hidden">
+		  	<div class="row">
+			  	<div class="col col-lg-2">
+			    	<label for="input_port">Puerta de Salida</label>
+		    	</div>
+		   	</div>
+		  	<div class="row">
+			  	<div class="col col-lg-2">
+				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Salida" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
+				    	<option value=""></option>
+				    	<option value="Salida 1">Salida 1</option>
+				    	<option value="Salida 2">Salida 2</option>
+				    	<option value="Salida 3">Salida 3</option>
+				    	<option value=""></option>
+				    </select>
+		    	</div>
+		    </div>
 		</div>
+
 	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
 	</form>
@@ -350,6 +388,7 @@
 				$('#entry_time').prop('disabled', true);
 				$('[name="systemTimeEntry"]').prop('disabled', true);
 				$(".form-group").removeClass("hidden");
+				$(".form-group .puerta").addClass("hidden");
 			}
 		});
 
