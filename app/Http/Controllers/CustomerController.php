@@ -19,7 +19,7 @@ class CustomerController extends Controller
     public function index()
     {
         // SELECT cu.*, group_concat(ca.placa) FROM estacion.customers cu inner join estacion.cars ca on cu.id=ca.idcustomers group by id;
-        $customers=Customer::where('status',1)->orderBy('id','ASC')->paginate(6);
+        $customers=Customer::where('status',1)->get();
         return view('customer.index',compact('customers'));
     }
 
