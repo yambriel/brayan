@@ -13,9 +13,10 @@
       	<input name="post_id" type="hidden" value="{{$ticket->post_id}}">
       @endif
 	  <div class="form-group">
+	  	<style> h7 { color: #000000; } </style>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_cliente">Cliente</label>
+			    	<label for="co_cliente"><h7>Cliente</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -29,7 +30,7 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_car">Carro</label>
+			    	<label for="co_car"><h7>Carro</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -42,7 +43,7 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_sotano">Sotano</label>
+			    	<label for="co_sotano"><h7>Sotano</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -56,7 +57,7 @@
 	  	<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_puesto">Puesto</label>
+			    	<label for="co_puesto"><h7>Puesto</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -67,7 +68,7 @@
 		    </div>
 		</div>
 	    <div class="form-group">
-		   	<label class="label-control">Fecha y Hora de Entrada</label>
+		   	<label class="label-control"><h7>Fecha y Hora de Entrada</h7></label>
 		    <input type="text" ID="entry_time" name="entry_time" class="form-control datetimepicker" value="{{$ticket->entry_time}}"/>
 
 		</div>
@@ -92,7 +93,7 @@
 			<div class="form-group puerta">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="input_port">Puerta de Entrada</label>
+			    	<label for="input_port"><h7>Puerta de Entrada</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -109,7 +110,7 @@
 		</div>
 
 		<div class="form-group hidden">
-		   	<label class="label-control">Fecha y Hora de Salida</label>
+		   	<label class="label-control"><h7>Fecha y Hora de Salida</h7></label>
 		    <input type="text" ID="exit_time" name="exit_time" class="form-control datetimepicker" value="{{ old('exit_time') }}"/>
 
 		</div>
@@ -134,7 +135,7 @@
 		<div class="form-group hidden">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="input_port">Puerta de Salida</label>
+			    	<label for="input_port"><h7>Puerta de Salida</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">

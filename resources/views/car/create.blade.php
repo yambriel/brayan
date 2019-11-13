@@ -11,9 +11,10 @@
 	<form class="form" method="POST" action="{{ route('car.store') }}" id="formCar" role="form">
       @csrf
 	  <div class="form-group">
+	  	<style> h7 { color: #000000; } </style>
 	  	<div class="row">
 		  	<div class="col col-lg-2">
-		    	<label for="co_cliente">Trabajador</label>
+		    	<label for="co_cliente"><h7>Trabajador</h7></label>
 	    	</div>
 	   	</div>
 	  	<div class="row">
@@ -26,15 +27,16 @@
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleFormControlInput1">Modelo</label>
+	  	 <style> h7 { color: #000000; } </style>
+	    <label for="exampleFormControlInput1"><h7>Modelo</h7></label>
 	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Modelo del Vehiculo" required value="{{ old('model') }}">
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleFormControlInput1">Placa</label>
+	    <label for="exampleFormControlInput1"><h7>Placa</h7></label>
 	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese la Placa del Vehiculo" required value="{{ old('placa') }}">
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleFormControlInput1">Color</label>
+	    <label for="exampleFormControlInput1"><h7>Color</h7></label>
 	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Color del Vehiculo" required value="{{ old('color') }}">
 	  </div>
 	  <button type="submit" class="btn btn-primary validd">Guardar</button>

@@ -3,11 +3,9 @@
 @section('body-class','profile-page sidebar-collapse')
 
 @section('content')
-
 @include('layouts.success')
 @include('layouts.errors')
-
- <nav class="navbar navbar-expand-lg bg-info">
+        <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
               <div class="navbar-translate">
                 <a class="navbar-brand" href="{{ route('car.index') }}">vehiculos </a>
@@ -24,66 +22,87 @@
                     <a href="{{ route('car.create') }}" class="nav-link">
                       Agregar
                     </a>
-                  
+                  </li>
                 </ul>
               </div>
             </div>
-          </nav>
-      <div class="box">
-  <div class="box-header">
-    <h3 class="box-title">Carros dentro del Sistema</h3>
-  </div>
+      </nav>
+    <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Vehciulos dentro del Sistema</h3>
+                </div>
   <!-- /.box-header -->
-  <div class="box-body no-padding">
-    <table class="table table-striped">
-      <tr>
-        <th>Trabajador</th>
-        <th>Modelo</th>
-        <th>Color</th>
-        <th>Placa</th>
-        <th>Acción</th>
-      </tr>
-      @if($cars->count())  
-      @foreach($cars as $car)  
-      <tr>
-        <td>{{$car->name}}</td>
-        <td>{{$car->model}}</td>
-        <td>{{$car->color}}</td>
-        <td>{{$car->placa}}</td>
-        <td>
-          <div class="row">
-            <div class="col-md-12 ml-auto mr-auto">
-              {{-- <form action="{{action('CarController@destroy', $car->id)}}" method="post">
-                 {{csrf_field()}}
-                 <input name="_method" type="hidden" value="DELETE"> --}}
-                <a data-toggle="tooltip" data-placement="top" title="Editar vehiculo" class="btn-edit" href="{{action('CarController@edit', $car->id)}}" ><i class="fas fa-edit"></i>
-                </a>
-                <a class="deleted" data-id="{{$car->id}}" data-name="{{$car->placa}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
-              </a>
-                {{-- <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar" type="submit"><i class="fas fa-trash"></i>
-                     </button>
-              </form> --}}
-          </div>
-        </div>
-        </td>
-       </tr>
-
-
-
-       @endforeach 
-       @else
-       <tr>
-        <td colspan="8">No hay carros registrados !!</td>
-      </tr>
-      @endif
-    </table>
-  </div>
-  {{ $cars->links() }}
-  <!-- /.box-body -->
+          <div class="container">
+            <table id="cars" class="table table-striped table-bordered">
+                 <thead>
+                  <tr>
+                    <th>Trabajador</th>
+                    <th>Modelo</th>
+                    <th>Color</th>
+                    <th>Placa</th>
+                    <th>Acción</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @if($cars->count())  
+                  @foreach($cars as $car)  
+                  <tr>
+                    <td>{{$car->name}}</td>
+                    <td>{{$car->model}}</td>
+                    <td>{{$car->color}}</td>
+                    <td>{{$car->placa}}</td>
+                    <td>
+                      <div class="row">
+                        <div class="col-md-12 ml-auto mr-auto">
+                            <a data-toggle="tooltip" data-placement="top" title="Editar vehiculo" class="btn-edit" href="{{action('CarController@edit', $car->id)}}" ><i class="fas fa-edit"></i>
+                            </a>
+                            <a class="deleted" data-id="{{$car->id}}" data-name="{{$car->placa}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
+                          </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                 @endforeach 
+                     </tbody> 
+                  @else
+                     <tr>
+                      <td colspan="8">No hay carros registrados !!</td>
+                    </tr>
+                    @endif
+            </table>
+    </div>
 </div>
 <script>
     $(document).ready(function() {
-      $('.deleted').click(function(e) {
+
+      $('#cars').DataTable({
+      "oLanguage": {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+      }
+    });
+
+      $('#cars tbody').on('click', '.deleted', function (e) {
         var id = $(this).data('id');
         var name = $(this).data('name');
         Swal.fire({

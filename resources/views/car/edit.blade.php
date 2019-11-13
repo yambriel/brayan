@@ -11,9 +11,10 @@
       @csrf
       @method('PUT')
       <div class="form-group">
+      		<style> h7 { color: #000000; } </style>
 	  	<div class="row">
 		  	<div class="col col-lg-2">
-		    	<label for="co_cliente">Trabajador</label>
+		    	<label for="co_cliente"><h7>Trabajador</h7></label>
 	    	</div>
 	   	</div>
 	  	<div class="row">
@@ -24,15 +25,15 @@
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleFormControlInput1">Modelo</label>
+	    <label for="exampleFormControlInput1"><h7>Modelo</h7></label>
 	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" value="{{$car->model}}"required>
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleFormControlInput1">Placa</label>
+	    <label for="exampleFormControlInput1"><h7>Placa</h7></label>
 	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" value="{{$car->placa}}"required>
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleFormControlInput1">Color</label>
+	    <label for="exampleFormControlInput1"><h7>Color</h7></label>
 	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" value="{{$car->color}}"required>
 	  </div>
 	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>

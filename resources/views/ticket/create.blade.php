@@ -11,9 +11,10 @@
       @csrf
       <input name="user_id" type="hidden" value="{{Auth::user()->id}}">
 		<div class="form-group">
+			<style> h7 { color: #000000; } </style>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_cliente">Trabajador</label>
+			    	<label for="co_cliente"><h7>Trabajador</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -27,7 +28,7 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_car">Carro</label>
+			    	<label for="co_car"><h7>Carro</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -40,7 +41,7 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_sotano">Sotano</label>
+			    	<label for="co_sotano"><h7>Sotano</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -54,7 +55,7 @@
 	  	<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_puesto">Puesto</label>
+			    	<label for="co_puesto"><h7>Puesto</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -65,7 +66,7 @@
 		    </div>
 		</div>
 	    <div class="form-group">
-		   	<label class="label-control">Fecha y Hora de Entrada</label>
+		   	<label class="label-control"><h7>Fecha y Hora de Entrada</h7></label>
 		    <input type="text" name="entry_time" class="form-control datetimepicker" value="
 		    {{
 		    ((old('entry_time')!= '')?old('entry_time'):date('d-m-Y hh:mm'))
@@ -95,7 +96,7 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_sotano">Puerta de Entrada</label>
+			    	<label for="co_sotano"><h7>Puerta de Entrada</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">

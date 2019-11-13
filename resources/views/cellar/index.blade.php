@@ -24,64 +24,82 @@
                     <a href="{{ route('cellar.create') }}" class="nav-link">
                       Agregar
                     </a>
-                  
+                  </li>
                 </ul>
               </div>
             </div>
-          </nav>
-      <div class="box">
-  <div class="box-header">
-    <h3 class="box-title">Sotanos Registrados Dentro Del Sistema</h3>
-  </div>
+      </nav>
+  <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Sotanos Registrados Dentro Del Sistema</h3>
+      </div>
   <!-- /.box-header -->
-  <div class="box-body no-padding">
-    <table class="table table-striped">
-      <tr>
-        <th style="width: 10px">#</th>
-        <th>Nombre</th>
-        <th>N° Puestos</th>
-        <th>Acción</th>
-      </tr>
-      @if($cellars->count())  
-      @foreach($cellars as $cellar)  
-      <tr>
-        <td>{{$cellar->id}}</td>
-        <td>{{$cellar->name}}</td>
-        <td>{{$cellar->cantidadPuestos}}</td>
-        <td>
+  <div class="container">
+    <table id="cellars" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>N° Puestos</th>
+              <th>Acción</th>
+            </tr>
+            </thead>
+        <tbody> 
+          @if($cellars->count())  
+          @foreach($cellars as $cellar)  
+        <tr>
+            <td>{{$cellar->name}}</td>
+            <td>{{$cellar->cantidadPuestos}}</td>
+            <td>
           <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
-          {{-- <form action="{{action('CellarController@destroy', $cellar->id)}}" method="post">
-           {{csrf_field()}}
-           <input name="_method" type="hidden" value="DELETE"> --}}
            <a data-toggle="tooltip" data-placement="top" title="Editar Sotano" class="btn-edit" href="{{action('CellarController@edit', $cellar->id)}}" ><i class="fas fa-edit"></i>
           </a>
           <a class="deleted" data-id="{{$cellar->id}}" data-name="{{$cellar->name}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
           </a>
-          {{-- <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
-               </button>
-             </form> --}}
           </div>
         </div>
-        </td>
-       </tr>
-
-
-
+          </td>
+        </tr>
        @endforeach 
+     </tbody>
        @else
-       <tr>
-        <td colspan="8">No hay Sotanos registrados !!</td>
-      </tr>
+             <tr>
+              <td colspan="8">No hay Sotanos registrados !!</td>
+            </tr>
       @endif
     </table>
   </div>
-  {{ $cellars->links() }}
-  <!-- /.box-body -->
 </div>
 <script>
     $(document).ready(function() {
-      $('.deleted').click(function(e) {
+      $('#cellars').DataTable({
+      "oLanguage": {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+      }
+    });
+
+      $('#cellars tbody').on('click', '.deleted', function (e) {
         var id = $(this).data('id');
         var name = $(this).data('name');
         Swal.fire({

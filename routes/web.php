@@ -30,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/ticket/editexit/{id}', 'TicketController@editexit');
 
 		Route::post('customer', 'CustomerController@store');
+		Route::post('car', 'CarController@store');
+		Route::post('ticket', 'TicketController@store');
 
 		Route::resource('ticket', 'TicketController');
 		Route::resource('customer', 'CustomerController');

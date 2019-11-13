@@ -29,9 +29,12 @@ class TicketController extends Controller
         })
         ->WhereNull('tickets.exit_time')
         ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(tickets.input_port) as imput'),'posts.status as estatus')
-        ->orderBy('tickets.id','ASC')->paginate(6);
+        ->orderBy('tickets.id','ASC')->get();
         return view('ticket.index',compact('tickets'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.

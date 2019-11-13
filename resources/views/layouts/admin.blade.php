@@ -29,18 +29,12 @@
   <link rel="stylesheet" href="{{ asset('chosen/chosen.min.css') }}">
 
 
-
-  <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <!-- <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script> -->
   {{-- con error --}}
   <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/sweetalert2.all.min.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/Chart.min.js') }}" type="text/javascript"></script>
-  <!-- DATATABLES -->
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
-  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
-
 </head>
 <body class="@yield('body-class')">
 <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
@@ -177,4 +171,7 @@
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   {{-- sin error --}}
   {{-- <script src="{{ asset('js/material-kit.min.js') }}" type="text/javascript"></script> --}}
+    <!-- DATATABLES -->
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 </html>

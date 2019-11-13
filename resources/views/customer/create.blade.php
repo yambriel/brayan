@@ -13,42 +13,43 @@
 	    	<h3 class="title">Datos del Trabajador </h3>
 		</div>
 	  <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Nombre</label>
+	  	 <style> h7 { color: #000000; } </style>
+	    <label class="bmd-label-floating"><h7>Nombre</h7></label>
 	    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('name') }}">
 	  </div>
 	  <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Apellido</label>
+	    <label class="bmd-label-floating"><h7>Apellido</h7></label>
 	    <input type="text" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('last_name') }}">
 	  </div>
 	  <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Correo</label>
+	    <label class="bmd-label-floating"><h7>Correo</h7></label>
 	    <input type="text" name="email" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('email') }}">
 	  </div>
 	   <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Carnet</label>
+	    <label class="bmd-label-floating"><h7>Carnet</h7></label>
 	    <input type="number" name="carnet" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('carnet') }}">
 	  </div>
 	   <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Telefono</label>
+	    <label class="bmd-label-floating"><h7>Telefono</h7></label>
 	    <input type="number" name="phone" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('phone') }}"> 
 	  </div>
 	  <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Extensión</label>
+	    <label class="bmd-label-floating"><h7>Extensión</h7></label>
 	    <input type="number" name="extension" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('extension') }}"> 
 	  </div>
 		<div class="text-center">
 	    	<h3 class="title">Datos del Vehiculo </h3>
 		</div>
 	  <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Modelo</label>
+	    <label class="bmd-label-floating"><h7>Modelo<h7></label>
 	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" placeholder="" required value="{{ old('model') }}">
 	  </div>
 	  <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Placa</label>
+	    <label class="bmd-label-floating"><h7>Placa</h7></label>
 	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" placeholder="" required value="{{ old('placa') }}">
 	  </div>
 	  <div class="form-group bmd-form-group">
-	    <label class="bmd-label-floating">Color</label>
+	    <label class="bmd-label-floating"><h7>Color</h7></label>
 	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" placeholder="" required value="{{ old('color') }}">
 	  </div>
 	  <button type="submit" class="btn btn-primary">Guardar</button>

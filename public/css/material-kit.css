@@ -12223,7 +12223,7 @@ fieldset[disabled] .is-focused .switch label:focus {
 }
 
 .form-control:read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  background-image: linear-gradient(to top, #961212 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #961212 1px, rgba(210, 210, 210, 0) 1px);
 }
 
 fieldset[disabled][disabled] .form-control,

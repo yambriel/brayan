@@ -17,7 +17,7 @@ class CellarController extends Controller
      */
     public function index()
     {
-        $cellars=Cellar::where('status',1)->orderBy('id','ASC')->paginate(6);
+        $cellars=Cellar::where('status',1)->get();
         return view('cellar.index',compact('cellars'));
     }
 

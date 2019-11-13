@@ -58,51 +58,58 @@
                 <td>{{$customer->extension}}</td>
                 <td>
                     <div class="row">
-                    <div class="col-md-12 ml-auto mr-auto">
-                    {{--< form action="{{action('CustomerController@destroy', $customer->id)}}" method="post">
-                       {{csrf_field()}}
-                    <input name="_method" type="hidden" value="DELETE"> --}}
-              <a data-toggle="tooltip" data-placement="top" title="Editar Trabajador" class="btn-edit"href="{{action('CustomerController@edit', $customer->id)}}" ><i class="fas fa-edit"></i>
-                      </a>
-              <a class="deleted" data-id="{{$customer->id}}" data-name="{{$customer->name}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
-                    </a>
-             {{-- <button class="btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"type="submit"><i class="fas fa-trash"></i>
-               </button> --}}
-             {{-- </form> --}}
-                    </div>
-                   </div>
+                     <div class="col-md-12 ml-auto mr-auto">
+                        <a data-toggle="tooltip" data-placement="top" title="Editar Trabajador" class="btn-edit"href="{{action('CustomerController@edit', $customer->id)}}" ><i class="fas fa-edit"></i>
+                                </a>
+                        <a class="deleted" data-id="{{$customer->id}}" data-name="{{$customer->name}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
+                              </a>
+                    </div> 
+                   </div> 
                </td>
               </tr>
-      </tbody> 
       @endforeach 
+            </tbody> 
       @else
       <tr>
         <td colspan="8">No hay Trabajadores registrados !!</td>
       </tr>
       @endif
          </table>
-
-        {{ $customers->links() }}
   <!-- /.box-body -->
   </div>
 </div>
 </div>
 <script>
-  $(document).ready(function() {
-    $('#customers').DataTable();
-} );
+$(document).ready(function() {
+    
+    $('#customers').DataTable({
+      "oLanguage": {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+      }
+    });
 
-   var table = $('#customers').DataTable();
-      table
-    .columns( '.name','.last_name','.email','.carnet','.phone','.extension' )
-    .search( 'name','last-name','email','carnet','phone','extension' )
-    .draw();
-
-</script>
-
-<script>
-    $(document).ready(function() {
-      $('.deleted').click(function(e) {
+      $('#customers tbody').on('click', '.deleted', function (e) {
         var id = $(this).data('id');
         var name = $(this).data('name');
         Swal.fire({
@@ -147,6 +154,4 @@
       });
     });
 </script>
-
-
 @endsection
