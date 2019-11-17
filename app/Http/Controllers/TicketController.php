@@ -123,7 +123,7 @@ class TicketController extends Controller
     public function editexit($id)
     {
         $fieldDisabled=1;
-        $ticket=Ticket::where('id',$id)->select('id','user_id','cellar_id','post_id','car_id','id_customer','output_port',DB::raw('DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i") as entry_time'),'systemTimeEntry')->first();
+        $ticket=Ticket::where('id',$id)->select('id','user_id','cellar_id','post_id','car_id','id_customer','input_port','output_port',DB::raw('DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i") as entry_time'),'systemTimeEntry')->first();
         return view('ticket.edit')
         ->with('ticket',$ticket)
         ->with('fieldDisabled',$fieldDisabled);
@@ -140,7 +140,6 @@ class TicketController extends Controller
     {
         //$this->validate($request,[ 'model'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
         if ($request->fieldDisabled != 0) {
-
             $date1=date_create($request->entry_time);
             $dateformatExit=date_format($date1, 'Y-m-d h:m');
             // Variables para update

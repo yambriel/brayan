@@ -3,6 +3,9 @@
 @section('body-class','profile-page sidebar-collapse')
 
 @section('content')
+@include('layouts.success')
+@include('layouts.errors')
+
 	<form class="form" method="POST" action="{{ route('ticket.update',$ticket->id) }}"  role="form">
       @csrf
       @method('PUT')
@@ -90,7 +93,7 @@
 	            </label>
 			</div>
 		</div>
-			<div class="form-group puerta">
+			<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
 			    	<label for="input_port"><h7>Puerta de Entrada</h7></label>
@@ -98,12 +101,11 @@
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="input_port" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
+				    <select id="input_port" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
 				    	<option value=""></option>
 				    	<option value="Norte Banesco">Norte Banesco</option>
 				    	<option value="Oeste Principal">Oeste Principal</option>
 				    	<option value="Sur Libertador">Sur Libertador</option>
-				    	<option value=""></option>
 				    </select>
 		    	</div>
 		    </div>
@@ -132,7 +134,8 @@
 	            </label>
 			</div>
 		</div>		 			  
-		<div class="form-group hidden">
+		
+		<div class="form-group" id="chosenhidden">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
 			    	<label for="output_port"><h7>Puerta de Salida</h7></label>
@@ -140,20 +143,22 @@
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="output_port" name="output_port" data-placeholder="Elija la Puerta de Salida" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
-				    	<option value=""></option>
+				    <select id="output_port" name="output_port" data-placeholder="Elija la Puerta de Salida" class="chosen-select" tabindex="2" style="width: 450px;">
+				    	<option value="" selected></option>
 				    	<option value="Norte Banesco">Norte Banesco</option>
 				    	<option value="Oeste Principal">Oeste Principal</option>
 				    	<option value="Sur Libertador">Sur Libertador</option>
-				    	<option value=""></option>
 				    </select>
 		    	</div>
 		    </div>
 		</div>
 
 	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
+	  <a href="{{route('ticket.index')}}" class="btn btn-primary">Regresar</a>
 	</form>
+
+
+
 	<script>
 		$(document).ready(function () {
 			var idcustomer = '{{$ticket->id_customer}}'
@@ -161,6 +166,9 @@
 			var cellarid = '{{$ticket->cellar_id}}'
 			var postid = '{{$ticket->post_id}}'
 			var fieldDisabled = '{{$fieldDisabled}}'
+			var inputport = '{{$ticket->input_port}}'
+			$("#chosenhidden").addClass("hidden")
+			
 			$.ajax({	
 				url: "{{url('/')}}/ticket/customer",
 				type: "GET",
@@ -385,12 +393,16 @@
 			    format:'DD-MM-YYYY hh:mm'
 			});
 
+			$('#input_port').val(inputport).trigger('chosen:updated');
+			
 			if (fieldDisabled!=0) {
 				$('#entry_time').prop('disabled', true);
 				$('[name="systemTimeEntry"]').prop('disabled', true);
 				$(".form-group").removeClass("hidden");
-				$(".form-group .puerta").addClass("hidden");
 				$('#input_port').prop('disabled', true);
+				$('#input_port').trigger('chosen:updated');
+				$('#output_port').prop('required', true);
+				$('#output_port').trigger('chosen:updated');
 			}
 		});
 

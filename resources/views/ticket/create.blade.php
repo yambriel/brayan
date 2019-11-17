@@ -112,7 +112,7 @@
 		    </div>
 		</div>
 	  <button type="submit" class="btn btn-primary">Guardar</button>
-	  <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
+	  <a href="{{route('ticket.index')}}" class="btn btn-primary">Regresar</a>
 	</form>
 
 

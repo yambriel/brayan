@@ -41,7 +41,9 @@
         <th>Sotano</th>
         <th>Puesto</th>
         <th>Hora de Entrada</th>
-        <th>Hora de salida</th>
+        <th>Puerta de Entrada</th>
+        <th>Hora de Salida</th>
+        <th>Puerta de Salida</th>
       </tr>
       @if($reports->count())  
       @foreach($reports as $report)  
@@ -53,7 +55,9 @@
         <td>{{$report->namesotado}}</td>
         <td>{{$report->number}}</td>
         <td>{{$report->dateentry}}</td>
+        <td>{{$report->inputp}}</td>
         <td>{{$report->exitentry}}</td>
+        <td>{{$report->outp}}</td>
        </tr>
        @endforeach 
        @else

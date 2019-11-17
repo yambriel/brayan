@@ -26,7 +26,7 @@ class ReportController extends Controller
         ->join('posts', function ($join) {
             $join->on('tickets.post_id', '=', 'posts.number')->on('tickets.cellar_id', '=', 'posts.cellar_id');
         })
-        ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(DATE_FORMAT(tickets.exit_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as exitentry'),'posts.status as estatus')
+        ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(input_port) as inputp'),DB::raw('concat(output_port) as outp'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(DATE_FORMAT(tickets.exit_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as exitentry'),'posts.status as estatus')
         ->orderBy('tickets.id','ASC')->paginate(6);
         return view('report.index',compact('reports'));
     }
