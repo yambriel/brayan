@@ -98,7 +98,7 @@
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
+				    <select id="input_port" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
 				    	<option value=""></option>
 				    	<option value="Norte Banesco">Norte Banesco</option>
 				    	<option value="Oeste Principal">Oeste Principal</option>
@@ -135,12 +135,12 @@
 		<div class="form-group hidden">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="input_port"><h7>Puerta de Salida</h7></label>
+			    	<label for="output_port"><h7>Puerta de Salida</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Salida" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
+				    <select id="output_port" name="output_port" data-placeholder="Elija la Puerta de Salida" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
 				    	<option value=""></option>
 				    	<option value="Norte Banesco">Norte Banesco</option>
 				    	<option value="Oeste Principal">Oeste Principal</option>
@@ -390,6 +390,7 @@
 				$('[name="systemTimeEntry"]').prop('disabled', true);
 				$(".form-group").removeClass("hidden");
 				$(".form-group .puerta").addClass("hidden");
+				$('#input_port').prop('disabled', true);
 			}
 		});
 

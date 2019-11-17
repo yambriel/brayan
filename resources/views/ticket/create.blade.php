@@ -101,7 +101,7 @@
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
+				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
 				    	<option value=""></option>
 				    	<option value="Norte Banesco">Norte Banesco</option>
 				    	<option value="Oeste Principal">Oeste Principal</option>
