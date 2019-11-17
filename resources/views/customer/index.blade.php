@@ -57,14 +57,24 @@
                 <td>{{$customer->phone}}</td>
                 <td>{{$customer->extension}}</td>
                 <td>
+<<<<<<< HEAD
                     <div class="row">
                      <div class="col-md-12 ml-auto mr-auto">
+=======
+                    <!-- <div class="row"> -->
+                    <!-- <div class="col-md-12 ml-auto mr-auto"> -->
+>>>>>>> 746f7f601aa482f169f2d127a4857f3fff556eaf
                         <a data-toggle="tooltip" data-placement="top" title="Editar Trabajador" class="btn-edit"href="{{action('CustomerController@edit', $customer->id)}}" ><i class="fas fa-edit"></i>
                                 </a>
                         <a class="deleted" data-id="{{$customer->id}}" data-name="{{$customer->name}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash"></i>
                               </a>
+<<<<<<< HEAD
                     </div> 
                    </div> 
+=======
+                    <!-- </div> -->
+                   <!-- </div> -->
+>>>>>>> 746f7f601aa482f169f2d127a4857f3fff556eaf
                </td>
               </tr>
       @endforeach 
