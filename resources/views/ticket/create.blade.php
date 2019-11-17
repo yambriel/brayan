@@ -103,9 +103,9 @@
 			  	<div class="col col-lg-2">
 				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="3" style="width: 450px;" required="required">
 				    	<option value=""></option>
-				    	<option value="Salida 1">Salida 1</option>
-				    	<option value="Salida 2">Salida 2</option>
-				    	<option value="Salida 3">Salida 3</option>
+				    	<option value="Norte Banesco">Norte Banesco</option>
+				    	<option value="Oeste Principal">Oeste Principal</option>
+				    	<option value="Sur Libertador">Sur Libertador</option>
 				    	<option value=""></option>
 				    </select>
 		    	</div>

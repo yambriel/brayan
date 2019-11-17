@@ -42,6 +42,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+
+/**
         $validator = Validator::make($request->all(), [
 
             'name'      => 'required|min:1|max:15',
@@ -53,12 +55,12 @@ class CustomerController extends Controller
                 
 
             ]);
-
         if ($validator->fails()) {
             return redirect('customer/create')
                         ->withErrors($validator)
                         ->withInput();
         }
+        */
             $modelcar =  $request->model;
             $colorcar =  $request->color;
             $placacar =  $request->placa;

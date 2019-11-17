@@ -7,7 +7,7 @@
 @include('layouts.success')
 @include('layouts.errors')
 
-	<form class="form" method="POST" action="{{ route('customer.store') }}"  role="form">
+<form class="form" method="POST" action="{{ route('customer.store') }}"  role="form">
       @csrf
 		<div class="text-center">
 	    	<h3 class="title">Datos del Trabajador </h3>
@@ -15,45 +15,47 @@
 	  <div class="form-group bmd-form-group">
 	  	 <style> h7 { color: #000000; } </style>
 	    <label class="bmd-label-floating"><h7>Nombre</h7></label>
-	    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('name') }}">
+	    <input type="text" name="name" class="form-control" id="name" placeholder="">
 	  </div>
 	  <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Apellido</h7></label>
-	    <input type="text" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('last_name') }}">
+	    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="">
 	  </div>
 	  <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Correo</h7></label>
-	    <input type="text" name="email" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('email') }}">
+	    <input type="text" name="email" class="form-control" id="email" placeholder="">
 	  </div>
 	   <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Carnet</h7></label>
-	    <input type="number" name="carnet" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('carnet') }}">
+	    <input type="number" name="carnet" class="form-control" id="number" placeholder="">
 	  </div>
 	   <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Telefono</h7></label>
-	    <input type="number" name="phone" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('phone') }}"> 
+	    <input type="number" name="phone" class="form-control" id="phone" placeholder=""> 
 	  </div>
 	  <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Extensión</h7></label>
-	    <input type="number" name="extension" class="form-control" id="exampleFormControlInput1" placeholder=""required value="{{ old('extension') }}"> 
+	    <input type="number" name="extension" class="form-control" id="extension" placeholder=""> 
 	  </div>
 		<div class="text-center">
 	    	<h3 class="title">Datos del Vehiculo </h3>
 		</div>
 	  <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Modelo<h7></label>
-	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" placeholder="" required value="{{ old('model') }}">
+	    <input type="text" name="model" class="form-control" id="model"
+	    placeholder="" >
 	  </div>
 	  <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Placa</h7></label>
-	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" placeholder="" required value="{{ old('placa') }}">
+	    <input type="text" name="placa" class="form-control" id="placa" placeholder="" >
 	  </div>
 	  <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Color</h7></label>
-	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" placeholder="" required value="{{ old('color') }}">
+	    <input type="text" name="color" class="form-control" id="color" placeholder="">
 	  </div>
 	  <button type="submit" class="btn btn-primary">Guardar</button>
 	  <a href="{{route('customer.index')}}" class="btn btn-primary">Regresar</a>
 	</form>
-
 @endsection
+
+
