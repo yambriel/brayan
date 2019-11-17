@@ -42,24 +42,24 @@
 	<script>
 	$(document).ready(function () {
 			var idcustomers = '{{$car->idcustomers}}'
-			$.ajax({	
-					url: "{{url('/')}}/car/customer",
-					type: "GET",
-					dataType: 'JSON',
-					success: function(data) {
-						$.each(data, function (i, val){
-							$('#co_cliente').append('<option value="'+val.id+'">'+val.carnet+'-'+val.name+' '+val.last_name+'</option>');
-						});
-					},
-					error: function(xhr, textStatus, thrownError) {
-						alert('Problemas en el servidor LLAMA A BRAYANNNNN.. Vuelva a intentar, si el problema persiste comuniquese con soporte');
-					},
-					complete: function(){
-						$('#co_cliente').val(idcustomers);
-						$('#co_cliente').trigger('chosen:updated');
-						$('#co_cliente').chosen({allow_single_deselect:true});
-					}
-				});
+			$.ajax({
+				url: "{{url('/')}}/car/customer",
+				type: "GET",
+				dataType: 'JSON',
+				success: function(data) {
+					$.each(data, function (i, val){
+						$('#co_cliente').append('<option value="'+val.id+'">'+val.carnet+'-'+val.name+' '+val.last_name+'</option>');
+					});
+				},
+				error: function(xhr, textStatus, thrownError) {
+					alert('Problemas en el servidor LLAMA A BRAYANNNNN.. Vuelva a intentar, si el problema persiste comuniquese con soporte');
+				},
+				complete: function(){
+					$('#co_cliente').val(idcustomers);
+					$('#co_cliente').trigger('chosen:updated');
+					$('#co_cliente').chosen({allow_single_deselect:true});
+				}
+			});
 
 		});
 	</script>

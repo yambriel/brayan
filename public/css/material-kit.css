@@ -18064,4 +18064,21 @@ footer .pull-center {
 }
 
 .hidden { display: none; }
+
+input[type=text].error, input[type=number].error, input[type=text].errorEmail, .chosenError{
+  border:1px solid red;
+  background:#ffa0a7;
+}
+
+label.error
+{
+  font:12px Tahoma,sans-serif;
+  color:#ED7476;
+}
+
+.chosen-error{
+  background: #ffa0a7 !important;
+  border: 1px solid red !important;
+  color: #333 !important;
+}
 /*# sourceMappingURL=kit-free.css.map */

@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
- 
+
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -35,6 +35,9 @@
   <script src="{{ asset('js/material-kit.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/sweetalert2.all.min.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/Chart.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/funciones_validador.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/jquery.mask.js') }}" type="text/javascript"></script>
 </head>
 <body class="@yield('body-class')">
 <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
@@ -51,7 +54,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-          
+
              @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Ingresar</a>
@@ -118,7 +121,7 @@
                   @endif
 
                 </ul>
-                
+
               </div>
             </div>
           </nav>

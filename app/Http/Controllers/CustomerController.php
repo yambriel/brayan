@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Car;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -52,7 +53,7 @@ class CustomerController extends Controller
             'carnet'    => 'numeric|min:8',
             'phone'     => 'numeric|min:12',
             'extension' => 'numeric|min:12',
-                
+
 
             ]);
         if ($validator->fails()) {
@@ -113,6 +114,22 @@ class CustomerController extends Controller
         $customer = Customer::where('status',1)->get()->toarray();
         $this->encode($customer);
         return response()->json($customer);
+    }
+
+    public function getCarnet()
+    {
+        $id = Input::get('id');
+        $customer = Customer::where('status',1)->where('carnet',$id)->get()->toarray();
+        $this->encode($customer);
+        return response()->json($customer);
+    }
+
+    public function getPlaca()
+    {
+        $id = Input::get('id');
+        $car = Car::where('status',1)->where('placa',$id)->get()->toarray();
+        $this->encode($car);
+        return response()->json($car);
     }
     /**
      * Show the form for editing the specified resource.

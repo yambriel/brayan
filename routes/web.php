@@ -21,6 +21,8 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 		Route::get('/home', 'HomeController@index')->name('home');
 		Route::get('/car/customer', 'CustomerController@getCustomer');
+		Route::get('/customer/carnet/', 'CustomerController@getCarnet');
+		Route::get('/customer/placa/', 'CustomerController@getPlaca');
 		Route::get('/ticket/customer', 'CustomerController@getCustomer');
 		Route::get('/ticket/car', 'CarController@getCar');
 		Route::get('/ticket/cellar', 'CellarController@getCellar');
