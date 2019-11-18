@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/home/chartRequest', 'TicketController@getChart');
 		Route::get('/ticket/getpostsall', 'PostController@getpostsall');
 		Route::get('/ticket/editexit/{id}', 'TicketController@editexit');
+		Route::get('/report/customer/', 'TicketController@getReportCustomer');
+		Route::get('/report/post/', 'TicketController@getReportPost');
+		Route::get('/report/ticket/', 'TicketController@getReportTicket');
 
 		Route::post('customer', 'CustomerController@store');
 		Route::post('car', 'CarController@store');
