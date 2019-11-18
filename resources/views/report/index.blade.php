@@ -7,68 +7,30 @@
 @include('layouts.success')
 @include('layouts.errors')
 
-    <div class="text-center">
-     <h3 class="title">Reportes </h3>
+<div class="container">
+<div class="text-center" id="title">
+  <div class="row">
+    <div class="col-sm">
+      <h3 class="title">Reportes </h3>
     </div>
- <nav class="navbar navbar-expand-lg bg-info">
-            <div class="container">
-              <div class="navbar-translate">
-                <a class="navbar-brand" href="{{ route('report.index') }}">Reporte de tickets</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="navbar-toggler-icon"></span>
-                  <span class="navbar-toggler-icon"></span>
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              </div> 
-            </div>
-          </nav>
-
-
-
-     <div class="box">
-  <div class="box-header">
-    <h3 class="box-title">Reportes de Tickets</h3>
   </div>
-  <!-- /.box-header -->
-  <div class="box-body no-padding">
-    <table class="table table-striped">
-      <tr>
-        <th style="width: 8px">#</th>
-        <th>Trabajador</th>
-        <th>Carnet</th>
-        <th>Carro</th>
-        <th>Sotano</th>
-        <th>Puesto</th>
-        <th>Hora de Entrada</th>
-        <th>Puerta de Entrada</th>
-        <th>Hora de Salida</th>
-        <th>Puerta de Salida</th>
-      </tr>
-      @if($reports->count())  
-      @foreach($reports as $report)  
-      <tr>
-        <td>{{$report->id}}</td>
-        <td>{{$report->namecli}}</td>
-        <td>{{$report->carnetit}}</td>
-        <td>{{$report->namecar}}</td>
-        <td>{{$report->namesotado}}</td>
-        <td>{{$report->number}}</td>
-        <td>{{$report->dateentry}}</td>
-        <td>{{$report->inputp}}</td>
-        <td>{{$report->exitentry}}</td>
-        <td>{{$report->outp}}</td>
-       </tr>
-       @endforeach 
-       @else
-       <tr>
-        <td colspan="8">No hay ningun ticket !!</td>
-      </tr>
-      @endif
-    </table>
-  </div>
-  {{ $reports->links() }}
-  <!-- /.box-body -->
 </div>
-
+  <div class="row" id="button">
+    <div class="col-sm">
+      <div class="text-center">
+        <a href="{{url('/')}}/report/customer/" class="btn btn-primary btn-lg" id="trabajador">Reporte Por Trabajador</a>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="text-center">
+        <a href="{{url('/')}}/report/post/" class="btn btn-primary btn-lg" id="puestos">Reporte Puestos Disponibles</a>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="text-center">
+        <a href="{{url('/')}}/report/ticket/" class="btn btn-primary btn-lg" id="ticket">Reporte Por Ticket</a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
