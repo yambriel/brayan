@@ -27,7 +27,8 @@
 	  </div>
 	   <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Carnet</h7></label>
-	    <input type="number" name="carnet" class="form-control" id="carnet" placeholder="">
+	    <input type="number" name="carnet" class="form-control" id="carnet" placeholder=""
+	    maxlength="4">
 	  </div>
 	   <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Telefono</h7></label>
@@ -79,6 +80,8 @@
 		 	},
 		 	carnet: {
 	            required: true,
+	           	minlength:1,
+		    	maxlength:7,
 	            carnetvalid: true,
 		 	},
 		 	phone: {
@@ -121,13 +124,15 @@
 	        },
 	        carnet: {
 		       required: "Por Favor Ingrese el Carnet",
+		        minlength: "El Numero debe contener entre 1 o 7  Digitos",
+		    	maxlength: "El Numero debe contener entre 1 o 7 Digitos",
 		       carnetvalid: "El Carnet ya existe"
 	        },
 	        phone: {
 			    required: "Por Favor Ingrese el Teléfono",
 			    minlength: "El Numero debe contener 11 Digitos",
 		    	maxlength: "El Numero debe contener 11 Digitos",
-			    phonevalid: "Ingrese un Teléfono con el Formato Valido"
+			    phonevalid: "Ingrese un Teléfono con el Formato Valido (0424,0412...)"
 	        },
 	        extension: {
 			    required: "Por Favor Ingrese la Extensión",

@@ -29,15 +29,15 @@
 	  <div class="form-group">
 	  	 <style> h7 { color: #000000; } </style>
 	    <label for="exampleFormControlInput1"><h7>Modelo</h7></label>
-	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Modelo del Vehiculo" required value="{{ old('model') }}">
+	    <input type="text" name="model" class="form-control" id="model" placeholder="Ingrese el Modelo del Vehiculo" required value="{{ old('model') }}">
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1"><h7>Placa</h7></label>
-	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese la Placa del Vehiculo" required value="{{ old('placa') }}">
+	    <input type="text" name="placa" class="form-control" id="placa" placeholder="Ingrese la Placa del Vehiculo" required value="{{ old('placa') }}">
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1"><h7>Color</h7></label>
-	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese el Color del Vehiculo" required value="{{ old('color') }}">
+	    <input type="text" name="color" class="form-control" id="color" placeholder="Ingrese el Color del Vehiculo" required value="{{ old('color') }}">
 	  </div>
 	  <button type="submit" class="btn btn-primary validd">Guardar</button>
 	  <a href="{{ route('car.index') }}" class="btn btn-primary">Regresar</a>
@@ -85,7 +85,41 @@
 									.append('Debe Elegir un Trabajador')))
 				}
 			});
-		});
+	if ($("#formCar").length > 0) {
+		urlplaca="{{url('/')}}/customer/placa/"
+	    $("#formCar").validate({
+		    rules: {
+			    
+			 	model: {
+		            required: true,
+		            alphanumber: true,
+			 	},
+			 	placa: {
+		            required: true,
+		            placavalid: true,
+			 	},
+			 	color: {
+			    	notNumber: true,
+			        required: true
+			    },
+		    },
+		    messages: {
+		        model: {
+		            required: "Por Favor Ingrese el Modelo",
+		            alphanumber: "Ingrese un Modelo Valido",
+			 	},
+			 	placa: {
+		            required: "Por Favor Ingrese la Placa",
+		            placavalid: "La Placa ya se Encuentra Registrada",
+			 	},
+			 	color: {
+			        notNumber: "Por favor ingrese solo letras",
+			        required: "Por favor ingrese el Color",
+			    },
+		    },
+	  	});
+	}
+});
 
 	</script>
 @endsection

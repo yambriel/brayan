@@ -36,7 +36,7 @@ $(function($) {
         }
     });
 
-    $.validator.addMethod("chosen",function(value, element){
+    $.validator.addMethod("chosens",function(value, element){
         var r = true;
         if (value==null || value=='' || value.length==0) {
             $(element).siblings('.chosen-container').find("a.chosen-single").addClass("chosen-error");
@@ -53,7 +53,7 @@ $(function($) {
     });
 
     $.validator.addMethod("phonevalid", function(value, element) {
-        var reg = ["0212","0424","0414","0416","0426"];
+        var reg = ["0212","0424","0414","0416","0426","0412"];
         var val=value
         var res = val.split("(");
         var cod = res[1].split(")");
