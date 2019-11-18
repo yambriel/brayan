@@ -16,6 +16,9 @@
   <link href="{{ asset('css/material-kit.css') }}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ asset('demo/demo.css') }}" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/funciones_validador.js') }}" type="text/javascript"></script>
 </head>
 
 <body class="@yield('body-class')">
