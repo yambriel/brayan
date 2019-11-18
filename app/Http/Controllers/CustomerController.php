@@ -44,24 +44,6 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
 
-/**
-        $validator = Validator::make($request->all(), [
-
-            'name'      => 'required|min:1|max:15',
-            'last_name' => 'required|min:1|max:15',
-            'email'     => 'required|email',
-            'carnet'    => 'numeric|min:8',
-            'phone'     => 'numeric|min:12',
-            'extension' => 'numeric|min:12',
-
-
-            ]);
-        if ($validator->fails()) {
-            return redirect('customer/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-        */
             $modelcar =  $request->model;
             $colorcar =  $request->color;
             $placacar =  $request->placa;
@@ -154,20 +136,6 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-
-            'name'      => 'required|min:1|max:15',
-            'last_name' => 'required|min:1|max:15',
-            'email'     => 'required|email',
-            'carnet'    => 'numeric|min:8',
-            'phone'     => 'numeric|min:12',
-            ]);
-
-        if ($validator->fails()) {
-            return redirect('customer/'.$id.'/edit')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
 
         Customer::find($id)->update($request->all());
         return redirect()->route('customer.index')->with('success','Registro actualizado satisfactoriamente');

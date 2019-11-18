@@ -41,18 +41,6 @@ class CellarController extends Controller
     public function store(Request $request)
     {
 
-       $validator = Validator::make($request->all(), [
-
-            'name'               => 'required|min:1|max:15',
-            'cantidadPuestos'    => 'numeric|min:1|max:99',
-            ]);
-
-        if ($validator->fails()) {
-            return redirect('cellar/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-
         $Cellar = new Cellar;
         $Cellar->name = $request->name;
         $Cellar->cantidadPuestos = $request->cantidadPuestos;
@@ -117,17 +105,6 @@ class CellarController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $validator = Validator::make($request->all(), [
-
-            'name'               => 'required|min:1|max:15',
-            'cantidadPuestos'    => 'numeric|min:1|max:99',
-            ]);
-
-        if ($validator->fails()) {
-            return redirect('cellar/'.$id.'/edit')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
 
         Cellar::find($id)->update($request->all());
         //borramos los puestos y los creamos nuevamente por si la cantidad cambia

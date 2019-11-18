@@ -7,7 +7,7 @@
 @include('layouts.success')
 @include('layouts.errors')
 
-	<form class="form" method="POST" action="{{ route('car.update',$car->id) }}"  role="form">
+	<form class="form" id="formCar" method="POST" action="{{ route('car.update',$car->id) }}"  role="form">
       @csrf
       @method('PUT')
       <div class="form-group">
@@ -26,15 +26,15 @@
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1"><h7>Modelo</h7></label>
-	    <input type="text" name="model" class="form-control" id="exampleFormControlInput1" value="{{$car->model}}"required>
+	    <input type="text" name="model" class="form-control" id="model" value="{{$car->model}}"required>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1"><h7>Placa</h7></label>
-	    <input type="text" name="placa" class="form-control" id="exampleFormControlInput1" value="{{$car->placa}}"required>
+	    <input type="text" name="placa" class="form-control" id="placa" value="{{$car->placa}}"required>
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleFormControlInput1"><h7>Color</h7></label>
-	    <input type="text" name="color" class="form-control" id="exampleFormControlInput1" value="{{$car->color}}"required>
+	    <input type="text" name="color" class="form-control" id="color" value="{{$car->color}}"required>
 	  </div>
 	  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 	  <a href="{{ route('car.index')}}" class="btn btn-primary">Regresar</a>
@@ -60,7 +60,42 @@
 					$('#co_cliente').chosen({allow_single_deselect:true});
 				}
 			});
+		
+	if ($("#formCar").length > 0) {
+		urlplaca="{{url('/')}}/customer/placa/"
+	    $("#formCar").validate({
+		    rules: {
+			    
+			 	model: {
+		            required: true,
+		            alphanumber: true,
+			 	},
+			 	placa: {
+		            required: true,
+		            placavalid: true,
+			 	},
+			 	color: {
+			    	notNumber: true,
+			        required: true
+			    },
+		    },
+		    messages: {
+		        model: {
+		            required: "Por Favor Ingrese el Modelo",
+		            alphanumber: "Ingrese un Modelo Valido",
+			 	},
+			 	placa: {
+		            required: "Por Favor Ingrese la Placa",
+		            placavalid: "La Placa ya se Encuentra Registrada",
+			 	},
+			 	color: {
+			        notNumber: "Por favor ingrese solo letras",
+			        required: "Por favor ingrese el Color",
+			    },
+		    },
+	  	});
+	}
+});
 
-		});
 	</script>
 @endsection

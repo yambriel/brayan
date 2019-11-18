@@ -61,6 +61,8 @@
 		 	},
 		 	carnet: {
 	            required: true,
+	            minlength:1,
+		    	maxlength:7,
 	            carnetvalid: true,
 		 	},
 		 	phone: {
@@ -91,6 +93,8 @@
 	        },
 	        carnet: {
 		       required: "Por Favor Ingrese el Carnet",
+		        minlength: "El Numero debe contener entre 1 o 7  Digitos",
+		    	maxlength: "El Numero debe contener entre 1 o 7 Digitos",
 		       carnetvalid: "El Carnet ya existe"
 	        },
 	        phone: {
