@@ -77,6 +77,32 @@
 </div>
 <script>
 	$(document).ready(function () {
+		$('#tablesd').DataTable({
+	      "oLanguage": {
+	            "sProcessing":     "Procesando...",
+	            "sLengthMenu":     "Mostrar _MENU_ registros",
+	            "sZeroRecords":    "No se encontraron resultados",
+	            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+	            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+	            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+	            "sInfoPostFix":    "",
+	            "sSearch":         "Buscar:",
+	            "sUrl":            "",
+	            "sInfoThousands":  ",",
+	            "sLoadingRecords": "Cargando...",
+	            "oPaginate": {
+	                "sFirst":    "Primero",
+	                "sLast":     "Último",
+	                "sNext":     "Siguiente",
+	                "sPrevious": "Anterior"
+	            },
+	            "oAria": {
+	                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+	                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	            }
+	      }
+	    });
 		$.ajax({
 			url: "{{url('/')}}/ticket/customer",
 			type: "GET",
@@ -168,37 +194,12 @@
 				dataType: 'JSON',
 				data: {ids: values,codcli: codcli,entrytime :entrytime,exitime :exitime},
 				success: function(data) {
+					$('tbody').empty();
 					if(data.length >0){
 						$("#table").removeClass('hidden')
 						$.each(data, function (i, val){
 							$('tbody').append('<tr><td>'+val.id+'</td><td>'+val.namecli+'</td><td>'+val.carnetit+'</td><td>'+val.namecar+'</td><td>'+val.namesotado+'</td><td>'+val.number+'</td><td>'+val.dateentry+'</td><td>'+val.exitentry+'</td></tr>');
 						});
-						$('#tablesd').DataTable({
-					      "oLanguage": {
-					            "sProcessing":     "Procesando...",
-					            "sLengthMenu":     "Mostrar _MENU_ registros",
-					            "sZeroRecords":    "No se encontraron resultados",
-					            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-					            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-					            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-					            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-					            "sInfoPostFix":    "",
-					            "sSearch":         "Buscar:",
-					            "sUrl":            "",
-					            "sInfoThousands":  ",",
-					            "sLoadingRecords": "Cargando...",
-					            "oPaginate": {
-					                "sFirst":    "Primero",
-					                "sLast":     "Último",
-					                "sNext":     "Siguiente",
-					                "sPrevious": "Anterior"
-					            },
-					            "oAria": {
-					                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-					                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-					            }
-					      }
-					    });
 					}else{
 						$('tbody').append('<tr><td colspan="8">No hay tickets de Entrada Registrados !!</td></tr>')
 					}
