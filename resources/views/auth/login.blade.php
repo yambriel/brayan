@@ -14,7 +14,8 @@
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Ingresar</h4>
               </div>
-              <p class="description text-center">Ingresa tus datos</p>
+               <style> h7 { color: #000000; } </style>
+              <p class="description text-center"><h7>Ingresa tus datos</h7></p>
                 <div class="card-body">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -35,7 +36,7 @@
                 </div>
               </div>
               <div class="footer text-center">
-                <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Ingresar</button>
+                <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg"><h7>Ingresar</h7></button>
               </div>
             </form>
           </div>

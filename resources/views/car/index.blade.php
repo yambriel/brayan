@@ -36,6 +36,7 @@
             <table id="cars" class="table table-striped table-bordered">
                  <thead>
                   <tr>
+                    <th>Carnet</th>
                     <th>Trabajador</th>
                     <th>Modelo</th>
                     <th>Color</th>
@@ -47,6 +48,7 @@
                   @if($cars->count())  
                   @foreach($cars as $car)  
                   <tr>
+                    <td>{{$car->carnet}}</td>
                     <td>{{$car->name}}</td>
                     <td>{{$car->model}}</td>
                     <td>{{$car->color}}</td>

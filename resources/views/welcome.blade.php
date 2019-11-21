@@ -22,13 +22,18 @@
       <div class="section text-center">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
-            <h3 class="title">Control de Estacionamiento la Estancia</h3>
-            <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn&apos;t scroll to get here. Add a button if you want the user to see more.</h5>
+             
+            <h2 class="title">Control de Estacionamiento la Campiña</h2>
+            <style> h7 { color: #000000; } </style>
+            <h3 class="description">
+              <h7>Empresa de petróleo y gas natural en Caracas</h7><hr>
+              <h7>Dirección: con, Av. Libertador, Caracas, Distrito Capital</h7><hr>
+              <h7>Teléfono: 0212-7084021.</h7></h3>
             </div>
           </div>
 
             <div class="title">
-            <h3>Notas de Interes</h3>
+            <h2>Notas de Interes</h2>
             </div>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">

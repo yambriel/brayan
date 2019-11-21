@@ -19,7 +19,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars=Car::where('cars.status',1)->join('customers', 'cars.idcustomers', '=', 'customers.id')->select('cars.id',DB::raw('concat(name," ",last_name) as name'),'model','color','placa')->get();
+        $cars=Car::where('cars.status',1)->join('customers', 'cars.idcustomers', '=', 'customers.id')->select('cars.id',DB::raw('concat(name," ",last_name) as name'),DB::raw('concat(carnet) as carnet'),'model','color','placa')->get();
         return view('car.index',compact('cars'));
     }
      // SELECT cu.*, group_concat(ca.placa) FROM estacion.customers cu inner join estacion.cars ca on cu.id=ca.idcustomers group by id;

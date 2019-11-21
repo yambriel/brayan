@@ -19,6 +19,44 @@ class CellarController extends Controller
     {
         $cellars=Cellar::where('status',1)->get();
         return view('cellar.index',compact('cellars'));
+
+
+        public function getReportPost()
+    {
+        $ids = Input::get('ids');
+        if($ids!=""){
+            $cosotano = Input::get('cosotano');
+            $copuesto = Input::get('copuesto');
+            //fecha y hora de 12 a 24 h
+            $cellars=Cellar::join('name', 'cantidadPuestos',)
+            ->whereBetween('cellar.created_at', [$dateformat1, $dateformat2])
+            ->where('tickets.id_customer',$codcli)
+            ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(tickets.input_port) as imput'),'posts.status as estatus')
+            ->orderBy('tickets.id','ASC')->get();
+            return response()->json($tickets);
+        } else {
+            return view('report.post');
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 
     /**
