@@ -18,6 +18,17 @@
 	<div class="row">
 		<div class="col-sm">
 	    	<div class="text-center">
+		    	<label for="co_ticket"><h7>Ticket</h7>
+		    	</label>
+		    </div>
+	    	<div class="text-center">
+				<select id="co_ticket" name="co_ticket" data-placeholder="Elija el Ticket" class="chosen-select" tabindex="2" style="width: 450px;">
+				  	<option value=""></option>
+				</select>
+			</div>
+		</div>
+		<div class="col-sm">
+	    	<div class="text-center">
 		    	<label for="co_cliente"><h7>Trabajador</h7>
 		    	</label>
 		    </div>
@@ -46,6 +57,7 @@
 			"/>
 		</div>
 	</div>
+	<p></p>
 	<div class="row">
 		<div class="col-sm">
 			<div class="text-center">
@@ -104,6 +116,34 @@
 	      }
 	    });
 		$.ajax({
+			url: "{{url('/')}}/report/tickets/",
+			type: "GET",
+			dataType: 'JSON',
+			success: function(data) {
+				if(data.length >0){
+					$.each(data, function (i, val){
+						$('#co_ticket').append('<option value="'+val.id+'">'+val.id+' </option>');
+					});
+				}else{
+					$(".container#reporte").prepend($("<div>",{"class":"alert alert-danger"})
+						.append($("<div>",{"class":"container"})
+							.append($("<div>",{"class":"alert-icon"})
+								.append($("<i>",{"class":"material-icons"}).text('error_outline')))
+							.append($("<button>",{"class":"close","type":"button","data-dismiss":"alert","aria-label":"Close"})
+								.append($("<span>",{"aria-hidden":"true"})
+									.append($("<i>",{"class":"material-icons"}).text('clear')) ))
+							.append($("<b>").text('Alerta:'))
+							.append('No hay Ticket registrados')))
+				}
+			},
+			error: function(xhr, textStatus, thrownError) {
+				alert('Problemas en el servidor LLAMA A BRAYANNNNN.. Vuelva a intentar, si el problema persiste comuniquese con soporte');
+			},
+			complete: function(){
+				$('#co_ticket').trigger('chosen:updated');
+			}
+		});
+		$.ajax({
 			url: "{{url('/')}}/ticket/customer",
 			type: "GET",
 			dataType: 'JSON',
@@ -149,18 +189,6 @@
 			event.preventDefault();
 			/* Act on the event */
 			var values="1";
-			if($("#co_cliente").val()==""){
-				$(".container#reporte").prepend($("<div>",{"class":"alert alert-danger"})
-					.append($("<div>",{"class":"container"})
-						.append($("<div>",{"class":"alert-icon"})
-							.append($("<i>",{"class":"material-icons"}).text('error_outline')))
-						.append($("<button>",{"class":"close","type":"button","data-dismiss":"alert","aria-label":"Close"})
-							.append($("<span>",{"aria-hidden":"true"})
-								.append($("<i>",{"class":"material-icons"}).text('clear')) ))
-						.append($("<b>").text('Alerta:'))
-						.append('Debe Seleccionar un Trabajador')))
-				return false;
-			}
 			if($("#entry_time").val()==""){
 				$(".container#reporte").prepend($("<div>",{"class":"alert alert-danger"})
 					.append($("<div>",{"class":"container"})
@@ -185,17 +213,19 @@
 						.append('Debe Ingresar una Fecha de Salida')))
 				return false;
 			}
-			var codcli=$("#co_cliente").val()
+			var coticket=$("#co_ticket").val()
+			var cocliente=$("#co_cliente").val()
 			var entrytime=$("#entry_time").val()
 			var exitime=$("#exit_time").val()
 			$.ajax({
-				url: "{{url('/')}}/report/customer/",
+				url: "{{url('/')}}/report/ticket/",
 				type: "GET",
 				dataType: 'JSON',
-				data: {ids: values,codcli: codcli,entrytime :entrytime,exitime :exitime},
+				data: {ids: values,coticket: coticket, cocliente: cocliente,entrytime :entrytime,exitime :exitime},
 				success: function(data) {
 					$("#table").removeClass('hidden')
 					$('tbody').empty();
+					console.log(data.count)
 					if(data.length >0){
 						$.each(data, function (i, val){
 							var dataexit=typeof val.exitentry==="object"?'':val.exitentry

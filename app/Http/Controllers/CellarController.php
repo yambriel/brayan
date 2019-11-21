@@ -7,6 +7,8 @@ use App\Post;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class CellarController extends Controller
 {
@@ -20,43 +22,26 @@ class CellarController extends Controller
         $cellars=Cellar::where('status',1)->get();
         return view('cellar.index',compact('cellars'));
 
+    }
 
-        public function getReportPost()
+    public function getReportPost()
     {
         $ids = Input::get('ids');
         if($ids!=""){
-            $cosotano = Input::get('cosotano');
-            $copuesto = Input::get('copuesto');
+            $codsot = Input::get('codsot');
             //fecha y hora de 12 a 24 h
-            $cellars=Cellar::join('name', 'cantidadPuestos',)
-            ->whereBetween('cellar.created_at', [$dateformat1, $dateformat2])
-            ->where('tickets.id_customer',$codcli)
-            ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(tickets.input_port) as imput'),'posts.status as estatus')
-            ->orderBy('tickets.id','ASC')->get();
-            return response()->json($tickets);
+            $cellars=Cellar::join('posts', 'cellars.id', '=', 'posts.cellar_id')
+            ->leftJoin('tickets', function ($join) {
+            $join->on('tickets.post_id', '=', 'posts.number')->on('tickets.cellar_id', '=', 'posts.cellar_id');
+            })
+            ->where('cellars.id',$codsot)
+            ->select('posts.id','cellars.name as namesotado',DB::raw('concat("Puesto"," ",posts.number) as namepost'),'posts.status as estatus','tickets.id as ticketnum')
+            ->orderBy('cellars.id','ASC')
+            ->orderBy('posts.number','ASC')->get();
+            return response()->json($cellars);
         } else {
             return view('report.post');
         }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
     }
 
     /**
@@ -118,7 +103,7 @@ class CellarController extends Controller
      */
     public function getCellar()
     {
-        $cellar = Cellar::where('status',1)->get()->toarray();
+        $cellar = Cellar::where('status',1)->orderBy('name','ASC')->get()->toarray();
         $this->encode($cellar);
         return response()->json($cellar);
     }

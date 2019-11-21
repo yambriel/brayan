@@ -61,7 +61,7 @@ class TicketController extends Controller
             })
             ->whereBetween('tickets.created_at', [$dateformat1, $dateformat2])
             ->where('tickets.id_customer',$codcli)
-            ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(tickets.input_port) as imput'),'posts.status as estatus')
+            ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(DATE_FORMAT(tickets.exit_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeExit) as exitentry'),DB::raw('concat(tickets.input_port) as imput'),'posts.status as estatus')
             ->orderBy('tickets.id','ASC')->get();
             return response()->json($tickets);
         } else {
@@ -70,7 +70,57 @@ class TicketController extends Controller
     }
 
 
+    public function getReportTicket()
+    {
+         $ids = Input::get('ids');
+        if($ids!=""){
+            $cocliente = Input::get('cocliente');
+            $coticket = Input::get('coticket');
+            $entrytime = Input::get('entrytime');
+            $exitime = Input::get('exitime');
+            //fecha y hora de 12 a 24 h
+            $entrytime=date_create($entrytime);
+            $time1 = strtotime(date_format($entrytime, 'h:m A'));
+            $cadena = date("H:i", $time1);
+            $dateformat1=date_format($entrytime, 'Y-m-d');
+            $dateformat1=$dateformat1.' '.$cadena;
 
+            $exitime=date_create($exitime);
+            $time2 = strtotime(date_format($exitime, 'h:m A'));
+            $cadena = date("H:i", $time2);
+            $dateformat2=date_format($exitime, 'Y-m-d');
+            $dateformat2=$dateformat2.' '.$cadena;
+
+            $tickets=Ticket::join('customers', 'tickets.id_customer', '=', 'customers.id')
+            ->join('cellars', 'tickets.cellar_id', '=', 'cellars.id')
+            ->join('cars', 'tickets.car_id', '=', 'cars.id')
+            ->join('posts', function ($join) {
+                $join->on('tickets.post_id', '=', 'posts.number')->on('tickets.cellar_id', '=', 'posts.cellar_id');
+            })
+            ->select('tickets.id',DB::raw('concat(customers.name," ",customers.last_name) as namecli'),DB::raw('concat(carnet) as carnetit'),'cellars.name as namesotado','tickets.post_id as number',DB::raw('concat(cars.model," ",cars.color," ",cars.placa) as namecar'),DB::raw('concat(DATE_FORMAT(tickets.entry_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeEntry) as dateentry'),DB::raw('concat(DATE_FORMAT(tickets.exit_time, "%d/%m/%Y %H:%i")," ", tickets.systemTimeExit) as exitentry'),DB::raw('concat(tickets.input_port) as imput'),'posts.status as estatus, tickets.created_at, tickets.id_customer')
+            ->orderBy('tickets.id','ASC');
+
+            if(!empty($entrytime) && !empty($exitime)){
+                $tickets->whereBetween('tickets.created_at', [$dateformat1, $dateformat2]);
+            }
+            if(!empty($cocliente)){
+                $tickets->where('tickets.id_customer',$cocliente);
+            }   
+            if(!empty($coticket)){
+                $tickets->where('tickets.id',$coticket);
+            }   
+            $result= $tickets->get();
+            return response()->json($result);
+        } else {
+            return view('report.tickets');
+        }
+    }
+
+    public function getTicket()
+    {
+        $tickets=Ticket::get();
+        return response()->json($tickets);
+    }
 
     /**
      * Show the form for creating a new resource.
