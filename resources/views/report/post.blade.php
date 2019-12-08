@@ -18,11 +18,11 @@
 	<div class="row">
 		<div class="col-sm">
 	    	<div class="text-center">
-		    	<label for="co_cellar"><h7>Sotano</h7>
+		    	<label for="co_cellar"><h7>Sótano</h7>
 		    	</label>
 		    </div>
 	    	<div class="text-center">
-				<select id="co_cellar" name="id_cellar" data-placeholder="Elija el Sotano" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
+				<select id="co_cellar" name="id_cellar" data-placeholder="Elija el Sótano" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
 				  	<option value=""></option>
 				</select>
 			</div>
@@ -43,7 +43,7 @@
 		    <table id="tablesd" class="table table-striped table-bordered">
 		    	<thead>
 				    <tr>
-				        <th>Sotano</th>
+				        <th>Sótano</th>
 				        <th>Puesto</th>
 				        <th>Estatus</th>
 				    </tr>
@@ -99,7 +99,7 @@
 								.append($("<span>",{"aria-hidden":"true"})
 									.append($("<i>",{"class":"material-icons"}).text('clear')) ))
 							.append($("<b>").text('Alerta:'))
-							.append('No hay Sotanos registrados')))
+							.append('No hay Sótanos registrados')))
 				}
 			},
 			error: function(xhr, textStatus, thrownError) {
@@ -122,7 +122,7 @@
 							.append($("<span>",{"aria-hidden":"true"})
 								.append($("<i>",{"class":"material-icons"}).text('clear')) ))
 						.append($("<b>").text('Alerta:'))
-						.append('Debe Seleccionar un Sotano')))
+						.append('Debe Seleccionar un Sótano')))
 				return false;
 			}
 			var codsot=$("#co_cellar").val()
@@ -140,7 +140,7 @@
 							$('tbody').append('<tr><td>'+val.namesotado+'</td><td>'+val.namepost+'</td><td>'+estatus+'</td></tr>');
 						});
 					}else{
-						$('tbody').append('<tr><td colspan="3">No hay Sotanos Registrados !!</td></tr>')
+						$('tbody').append('<tr><td colspan="3">No hay Sótanos Registrados !!</td></tr>')
 					}
 				},
 				error: function(xhr, textStatus, thrownError) {

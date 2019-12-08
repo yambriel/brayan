@@ -31,7 +31,7 @@
       </nav>
   <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Sotanos Registrados Dentro Del Sistema</h3>
+        <h3 class="box-title">Sótanos Registrados Dentro Del Sistema</h3>
       </div>
   <!-- /.box-header -->
   <div class="container">
@@ -64,7 +64,7 @@
      </tbody>
        @else
              <tr>
-              <td colspan="8">No hay Sotanos registrados !!</td>
+              <td colspan="8">No hay Sótanos registrados !!</td>
             </tr>
       @endif
     </table>
@@ -121,7 +121,7 @@
                   success: function(response) {
                       Swal.fire({title: "Procesado", 
                         showCancelButton: false,
-                        text: "El Sotano: "+name+" se ha eliminado satisfactoriamente",
+                        text: "El Sótano: "+name+" se ha eliminado satisfactoriamente",
                         icon: 'success',
                       }).then(result => {
                         if (result.value) {
@@ -134,7 +134,7 @@
                   failure: function (response) {
                       Swal.fire(
                       "Error Interno",
-                      "Ah ocurrido un error al eliminar el Sotano", // had a missing comma
+                      "Ah ocurrido un error al eliminar el Sótano", // had a missing comma
                       "error"
                       )
                   }

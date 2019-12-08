@@ -39,8 +39,8 @@
                   <th style="width: 8px">#</th>
                   <th>Trabajador</th>
                   <th>Carnet</th>
-                  <th>Carro</th>
-                  <th>Sotano</th>
+                  <th>Vehículo</th>
+                  <th>Sótano</th>
                   <th>Puesto</th>
                   <th>Hora de Entrada</th>
                   <th>Puerta de Entrada</th>

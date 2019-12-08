@@ -105,14 +105,14 @@
                     <a href="{{ route('customer.index') }}" class="nav-link">Trabajadores</a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('car.index') }}" class="nav-link">Vehiculo</a>
+                    <a href="{{ route('car.index') }}" class="nav-link">Vehículo</a>
                   </li>
                     <li class="nav-item">
                     <a href="{{ route('ticket.index') }}" class="nav-link">Ticket</a>
                   </li>
                   @if (Auth::user()->admin)
                     <li class="nav-item">
-                      <a href="{{ route('cellar.index') }}" class="nav-link">SotanoS</a>
+                      <a href="{{ route('cellar.index') }}" class="nav-link">Sótanos</a>
 
                     </li>
                     <li class="nav-item">

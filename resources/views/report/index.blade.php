@@ -31,6 +31,11 @@
         <a href="{{url('/')}}/report/ticket/" class="btn btn-primary btn-lg" id="ticket">Reporte Por Ticket</a>
       </div>
     </div>
+    <div class="col-sm">
+      <div class="text-center">
+        <a href="{{url('/')}}/report/process/" class="btn btn-primary btn-lg" id="report">Ticket Procesado</a>
+      </div>
+    </div>
   </div>
 </div>
 @endsection

@@ -28,12 +28,12 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_car"><h7>Carro</h7></label>
+			    	<label for="co_car"><h7>Vehículo</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="co_car" name="car_id" data-placeholder="Elija el Carro" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
+				    <select id="co_car" name="car_id" data-placeholder="Elija el vehículo" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
 				    </select>
 		    	</div>
 		    </div>
@@ -41,12 +41,12 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_sotano"><h7>Sotano</h7></label>
+			    	<label for="co_sotano"><h7>Sótano</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="co_sotano" name="cellar_id" data-placeholder="Elija el Sotano" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
+				    <select id="co_sotano" name="cellar_id" data-placeholder="Elija el Sótano" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
 				    	<option value=""></option>
 				    </select>
 		    	</div>
@@ -175,7 +175,7 @@
 										.append($("<span>",{"aria-hidden":"true"})
 											.append($("<i>",{"class":"material-icons"}).text('clear')) ))
 									.append($("<b>").text('Error Alert:'))
-									.append('No hay carros registrados')))
+									.append('No hay Vehículos registrados')))
 							$('.co_car').remove();
 							$('#co_car').trigger('chosen:updated');
 						}
@@ -209,7 +209,7 @@
 									.append($("<span>",{"aria-hidden":"true"})
 										.append($("<i>",{"class":"material-icons"}).text('clear')) ))
 								.append($("<b>").text('Error Alert:'))
-								.append('No hay sotanos registrados')))
+								.append('No hay Sótanos registrados')))
 					}
 				},
 				error: function(xhr, textStatus, thrownError) {

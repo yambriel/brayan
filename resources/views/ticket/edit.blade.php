@@ -19,7 +19,7 @@
 	  	<style> h7 { color: #000000; } </style>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_cliente"><h7>Cliente</h7></label>
+			    	<label for="co_cliente"><h7>Trabajador</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -33,7 +33,7 @@
 		<div class="form-group">
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-			    	<label for="co_car"><h7>Carro</h7></label>
+			    	<label for="co_car"><h7>Vehículo</h7></label>
 		    	</div>
 		   	</div>
 		  	<div class="row">
@@ -222,7 +222,7 @@
 									.append($("<span>",{"aria-hidden":"true"})
 										.append($("<i>",{"class":"material-icons"}).text('clear')) ))
 								.append($("<b>").text('Error Alert:'))
-								.append('No hay carros registrados')))
+								.append('No hay vehículos registrados')))
 						$('.co_car').remove();
 						$('#co_car').trigger('chosen:updated');
 					}

@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/report/post/', 'CellarController@getReportPost');
 		Route::get('/report/ticket/', 'TicketController@getReportTicket');
 		Route::get('/report/tickets/', 'TicketController@getTicket');
+		Route::get('report', 'ReportController@getprocess');
+
 
 		Route::post('customer', 'CustomerController@store');
 		Route::post('car', 'CarController@store');

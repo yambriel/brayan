@@ -41,11 +41,11 @@ if ($("#sotano").length > 0) {
 	    },
 	    messages: {
 		    name: {
-		        required: "Por Favor Ingrese el Nombre del Sotano",
-	            alphanumber: "Ingrese un Nombre del Sotano Valido",
+		        required: "Por Favor Ingrese el Nombre del Sótano",
+	            alphanumber: "Ingrese un Nombre del Sótano Valido",
 		    },
 	        cantidadPuestos: {
-			    required: "Por Favor Ingrese la Cantidad de Puestos que Posee el Sotano ",
+			    required: "Por Favor Ingrese la Cantidad de Puestos que Posee el Sótano ",
 			    minlength: "El Numero debe contener entre 1 o 100  Digitos",
 		    	maxlength: "El Numero debe contener entre 1 o 100 Digitos",
 			    onlynumber: "Ingrese solo Números" 

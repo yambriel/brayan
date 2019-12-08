@@ -39,7 +39,7 @@
 	    <input type="number" name="extension" class="form-control" id="extension" maxlength="4" placeholder="">
 	  </div>
 		<div class="text-center">
-	    	<h3 class="title">Datos del Vehiculo </h3>
+	    	<h3 class="title">Datos del Vehículo </h3>
 		</div>
 	  <div class="form-group bmd-form-group">
 	    <label class="bmd-label-floating"><h7>Modelo<h7></label>
