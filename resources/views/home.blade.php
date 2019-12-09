@@ -23,6 +23,32 @@
 </div>
 <script>
 $(document).ready(function () {
+    //copiar esto
+    let sessionCellar = $('body').find('#doorCellar')
+    sessionCellar = sessionCellar.val()
+    if(!sessionCellar){
+        Swal.fire({
+            title: 'En Cual Puerta va a Trabajar?',
+            input: 'select',
+            inputOptions: {
+              'Norte Banesco': 'Norte Banesco',
+              'Oeste Principal': 'Oeste Principal',
+              'Sur Libertador': 'Sur Libertador'
+            },
+            inputValue: 'Norte Banesco',
+            showCancelButton: true
+        }).then(function (e) {
+            let datavar = e.value
+            if (datavar != "") {
+                $.ajax({
+                  type: "GET",
+                  url: "{{url('/')}}/home/setSession/"+datavar,
+                  cache: false,
+                });
+            }
+        });
+    }
+    /////////////////hasta aqui//////////////
     //load graphics
     $.CargarGraf = function () {
         var ctx = document.getElementById('doughnut-chart');

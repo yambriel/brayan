@@ -20,9 +20,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-  
+        return view('report.index',compact('reports'));
     }
-    public function process()
+    public function getprocess()
     {
         $reports=ticket::join('customers', 'tickets.id_customer', '=', 'customers.id')
         ->join('cellars', 'tickets.cellar_id', '=', 'cellars.id')

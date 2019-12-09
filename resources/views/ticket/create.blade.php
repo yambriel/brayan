@@ -101,7 +101,7 @@
 		   	</div>
 		  	<div class="row">
 			  	<div class="col col-lg-2">
-				    <select id="" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
+				    <select id="input_port" name="input_port" data-placeholder="Elija la Puerta de Entrada" class="chosen-select" tabindex="2" style="width: 450px;" required="required">
 				    	<option value=""></option>
 				    	<option value="Norte Banesco">Norte Banesco</option>
 				    	<option value="Oeste Principal">Oeste Principal</option>
@@ -122,7 +122,7 @@
 			var carid = "{{ old('car_id') }}"
 			var cellarid = "{{ old('cellar_id') }}"
 			var postid = "{{ old('post_id') }}"
-			$.ajax({	
+			$.ajax({
 				url: "{{url('/')}}/ticket/customer",
 				type: "GET",
 				dataType: 'JSON',
@@ -191,7 +191,7 @@
 					}
 				});
 			});
-			$.ajax({	
+			$.ajax({
 				url: "{{url('/')}}/ticket/cellar",
 				type: "GET",
 				dataType: 'JSON',
@@ -225,10 +225,10 @@
 			});
 			$('#co_sotano').on('change', function(evt, params) {
 				var value = $(this).val();
-				$.ajax({	
+				$.ajax({
 					url: "{{url('/')}}/ticket/posts",
 					type: "GET",
-					data: {ids: value},				
+					data: {ids: value},
 					dataType: 'JSON',
 					success: function(data) {
 						if(data.length >0){
@@ -275,6 +275,11 @@
 			    },
 			    format:'DD-MM-YYYY hh:mm'
 			});
+			let sessionCellar = $('body').find('#doorCellar')
+		    if(sessionCellar.val()){
+		    	$("#input_port").val(sessionCellar.val())
+		    	$('#input_port').trigger('chosen:updated');
+		    }
 		});
 
 
