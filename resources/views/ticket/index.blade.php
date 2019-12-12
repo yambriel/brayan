@@ -31,6 +31,7 @@
               <div class="box-header">
                 <h3 class="box-title">Ingresar Nuevo Ticket</h3>
               </div>
+            </div>
   <!-- /.box-header -->
   <div class="container">
     <table id="tickets" class="table table-striped table-bordered">
@@ -82,7 +83,6 @@
       @endif
     </table>
   </div>
-</div>
 <script>
     $(document).ready(function() {
  $('#tickets').DataTable({
