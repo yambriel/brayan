@@ -35,7 +35,8 @@ class CellarController extends Controller
             $join->on('tickets.post_id', '=', 'posts.number')->on('tickets.cellar_id', '=', 'posts.cellar_id');
             })
             ->where('cellars.id',$codsot)
-            ->select('posts.id','cellars.name as namesotado',DB::raw('concat("Puesto"," ",posts.number) as namepost'),'posts.status as estatus','tickets.id as ticketnum')
+            ->select('posts.id','cellars.name as namesotado',DB::raw('concat("Puesto"," ",posts.number) as namepost'),'posts.status as estatus',DB::raw('MAX(tickets.id) as ticketnum'))
+            ->groupBy('posts.id')
             ->orderBy('cellars.id','ASC')
             ->orderBy('posts.number','ASC')->get();
             return response()->json($cellars);
